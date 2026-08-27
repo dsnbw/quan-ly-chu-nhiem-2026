@@ -36,6 +36,7 @@ import {
   RetentionPolicy
 } from '../../types';
 
+import * as sampleData from '../seed/sampleData';
 import {
   initialSchoolConfig,
   initialAcademicYears,
@@ -160,17 +161,59 @@ class LocalRepository {
       {
         id: 'audit-001',
         timestamp: new Date().toISOString(),
-        actorId: 'teacher-nguyen-van-an',
-        actorName: 'Thầy Nguyễn Văn An',
+        actorId: 'user-default',
+        actorName: 'Giáo viên',
         actorRole: 'HOMEROOM_TEACHER',
         action: 'INITIALIZE_SYSTEM',
         resourceType: 'SYSTEM',
-        resourceId: 'cva-2026',
-        schoolId: 'school-cva-01',
-        details: 'Khởi tạo dữ liệu nền tảng quản lý chủ nhiệm năm học 2026-2027.',
+        resourceId: 'sys-001',
+        schoolId: 'school-default',
+        details: 'Khởi tạo dữ liệu hệ thống.',
         classification: 'PUBLIC_INTERNAL'
       }
     ]);
+    this.setItem(STORAGE_KEYS.USER_SESSION, {
+      userId: 'user-default',
+      username: 'teacher',
+      fullName: 'Giáo viên',
+      email: '',
+      phone: '',
+      activeRole: 'HOMEROOM_TEACHER',
+      availableRoles: ['HOMEROOM_TEACHER', 'SUBJECT_TEACHER', 'PRINCIPAL', 'SCHOOL_ADMIN', 'PARENT_GUARDIAN', 'STUDENT'],
+      schoolId: 'school-default',
+      currentAcademicYearId: 'ay-2026-2027',
+      homeroomClassId: 'class-default',
+      teachingSubjectIds: [],
+      teachingClassIds: ['class-default']
+    } as UserSession);
+    this.notify();
+  }
+
+  public loadSampleData() {
+    this.setItem(STORAGE_KEYS.SCHOOL, sampleData.initialSchoolConfig);
+    this.setItem(STORAGE_KEYS.ACADEMIC_YEARS, sampleData.initialAcademicYears);
+    this.setItem(STORAGE_KEYS.CLASSES, sampleData.initialClasses);
+    this.setItem(STORAGE_KEYS.SUBJECTS, sampleData.initialSubjects);
+    this.setItem(STORAGE_KEYS.STUDENTS, sampleData.initialStudents);
+    this.setItem(STORAGE_KEYS.CONTACT_LOGS, sampleData.initialContactLogs);
+    this.setItem(STORAGE_KEYS.SEATING, sampleData.initialSeatingLayout);
+    this.setItem(STORAGE_KEYS.BEHAVIOR_TYPES, sampleData.initialBehaviorEventTypes);
+    this.setItem(STORAGE_KEYS.BEHAVIOR_OBS, sampleData.initialBehaviorObservations);
+    this.setItem(STORAGE_KEYS.FIN_CAMPAIGNS, sampleData.initialFinancialCampaigns);
+    this.setItem(STORAGE_KEYS.FIN_TRANSACTIONS, sampleData.initialFinancialTransactions);
+    this.setItem(STORAGE_KEYS.FIN_FEES, sampleData.initialStudentFeeEntries);
+    this.setItem(STORAGE_KEYS.ATTENDANCE, sampleData.initialAttendanceRecords);
+    this.setItem(STORAGE_KEYS.LEAVE_REQUESTS, sampleData.initialLeaveRequests);
+    this.setItem(STORAGE_KEYS.GRADES, sampleData.initialGradeEntries);
+    this.setItem(STORAGE_KEYS.HOMEROOM_BOOK, sampleData.initialHomeroomBook);
+    this.setItem(STORAGE_KEYS.CLASS_MEETINGS, sampleData.initialClassMeetings);
+    this.setItem(STORAGE_KEYS.EARLY_WARNINGS, sampleData.initialEarlyWarnings);
+    this.setItem(STORAGE_KEYS.COUNSELING, sampleData.initialCounselingCases);
+    this.setItem(STORAGE_KEYS.INCIDENTS, sampleData.initialIncidentRecords);
+    this.setItem(STORAGE_KEYS.REWARDS, sampleData.initialRewardProposals);
+    this.setItem(STORAGE_KEYS.TASKS, sampleData.initialTasks);
+    this.setItem(STORAGE_KEYS.CALENDAR, sampleData.initialCalendarEvents);
+    this.setItem(STORAGE_KEYS.RETENTION, sampleData.initialRetentionPolicies);
     this.setItem(STORAGE_KEYS.USER_SESSION, {
       userId: 'teacher-nguyen-van-an',
       username: 'an.nguyenvan',
@@ -178,15 +221,7 @@ class LocalRepository {
       email: 'an.nguyenvan@chuvanan.edu.vn',
       phone: '0912 345 678',
       activeRole: 'HOMEROOM_TEACHER',
-      availableRoles: [
-        'HOMEROOM_TEACHER',
-        'SUBJECT_TEACHER',
-        'PRINCIPAL',
-        'SCHOOL_ADMIN',
-        'COUNSELOR_SOCIAL_WORK',
-        'PARENT_GUARDIAN',
-        'STUDENT'
-      ],
+      availableRoles: ['HOMEROOM_TEACHER', 'SUBJECT_TEACHER', 'PRINCIPAL', 'SCHOOL_ADMIN', 'PARENT_GUARDIAN', 'STUDENT'],
       schoolId: 'school-cva-01',
       currentAcademicYearId: 'ay-2026-2027',
       homeroomClassId: 'class-8a1',
@@ -195,6 +230,7 @@ class LocalRepository {
     } as UserSession);
     this.notify();
   }
+
 
   private getItem<T>(key: string, defaultValue: T): T {
     try {
@@ -539,18 +575,18 @@ class LocalRepository {
 
   public getUserSession(): UserSession {
     return this.getItem(STORAGE_KEYS.USER_SESSION, {
-      userId: 'teacher-nguyen-van-an',
-      username: 'an.nguyenvan',
-      fullName: 'Thầy Nguyễn Văn An',
-      email: 'an.nguyenvan@chuvanan.edu.vn',
-      phone: '0912 345 678',
+      userId: 'user-default',
+      username: 'teacher',
+      fullName: 'Giáo viên',
+      email: '',
+      phone: '',
       activeRole: 'HOMEROOM_TEACHER',
       availableRoles: ['HOMEROOM_TEACHER', 'SUBJECT_TEACHER', 'PRINCIPAL', 'SCHOOL_ADMIN', 'PARENT_GUARDIAN', 'STUDENT'],
-      schoolId: 'school-cva-01',
+      schoolId: 'school-default',
       currentAcademicYearId: 'ay-2026-2027',
-      homeroomClassId: 'class-8a1',
-      teachingSubjectIds: ['sub-math', 'sub-exp'],
-      teachingClassIds: ['class-8a1', 'class-8a2']
+      homeroomClassId: 'class-default',
+      teachingSubjectIds: [],
+      teachingClassIds: ['class-default']
     });
   }
 

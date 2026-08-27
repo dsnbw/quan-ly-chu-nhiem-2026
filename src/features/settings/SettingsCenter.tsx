@@ -377,12 +377,28 @@ export const SettingsCenter: React.FC = () => {
           <div className="flex flex-col gap-4 max-w-sm">
             <Button
               variant="outline"
+              className="text-emerald-600 border-emerald-200 hover:bg-emerald-50"
+              onClick={() => {
+                if(confirm('Bạn muốn nạp dữ liệu mẫu để trải nghiệm thử? Dữ liệu hiện tại sẽ bị thay thế.')) {
+                  localStore.loadSampleData();
+                  alert('Đã nạp dữ liệu mẫu! Ứng dụng sẽ tải lại.');
+                  window.location.reload();
+                }
+              }}
+            >
+              Nạp dữ liệu mẫu (Sample Data)
+            </Button>
+            <Button
+              variant="outline"
               className="text-red-600 border-red-200 hover:bg-red-50"
               onClick={() => {
-                if(confirm('Bạn có CHẮC CHẮN muốn XÓA TOÀN BỘ dữ liệu hiện tại không? Hành động này không thể hoàn tác!')) {
+                const text = prompt('Bạn có CHẮC CHẮN muốn XÓA TOÀN BỘ dữ liệu hiện tại không?\nHành động này không thể hoàn tác!\n\nGõ chữ "XOA" (viết hoa) để xác nhận:');
+                if(text === 'XOA') {
                   localStorage.clear();
                   alert('Đã xóa toàn bộ dữ liệu! Ứng dụng sẽ tải lại.');
                   window.location.reload();
+                } else if (text !== null) {
+                  alert('Chữ xác nhận không đúng. Đã hủy bỏ thao tác xóa.');
                 }
               }}
             >

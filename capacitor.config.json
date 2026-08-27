@@ -1,0 +1,13 @@
+﻿{
+  "appId": "vn.edu.chunhiem2026.app",
+  "appName": "QuanLyChuNhiem2026",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": true,
+    "captureInput": true,
+    "webContentsDebuggingEnabled": true
+  }
+}

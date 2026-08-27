@@ -1,0 +1,14 @@
+{
+  "name": "cva-sync-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Sync",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.0",
+    "cors": "^2.8.5",
+    "sqlite3": "^5.1.7"
+  }
+}

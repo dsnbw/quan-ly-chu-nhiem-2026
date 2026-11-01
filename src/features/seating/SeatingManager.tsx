@@ -155,7 +155,7 @@ export const SeatingManager: React.FC = () => {
         <div>
           <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 flex items-center gap-2.5">
             <Grid className="w-6 h-6 text-brand-600" />
-            Sơ đồ Chỗ ngồi & Phân chia Tổ Lớp 8A1
+            Sơ đồ Chỗ ngồi & Phân chia Tổ {classRoom?.name || 'Lớp học'}
           </h1>
           <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
             Bố trí 5 hàng x 3 dãy đôi (30 chỗ ngồi). Hỗ trợ xếp chỗ thông minh và xuất bản file Word A4 chuẩn quy cách.

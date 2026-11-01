@@ -22,11 +22,23 @@ import { formatDateVN, getGenderLabel } from '../../utils/formatters';
 export const DigitalReportCardManager: React.FC = () => {
   const school = localStore.getSchoolConfig();
   const students = localStore.getStudents();
+  const classes = localStore.getClasses();
+  const currentClass = classes[0] || { id: 'class-default', name: 'Lớp học' };
   const subjects = localStore.getSubjects();
-  const [selectedStudent, setSelectedStudent] = useState<Student>(students[0]);
+  const [selectedStudent, setSelectedStudent] = useState<Student | undefined>(students[0]);
   const [currentStep, setCurrentStep] = useState<ReportCardLifecycle>('HOMEROOM_CONFIRMED');
   const [isSigningModalOpen, setIsSigningModalOpen] = useState(false);
   const [isSignSuccess, setIsSignSuccess] = useState(false);
+
+  if (!selectedStudent) {
+    return (
+      <div className="bg-white p-8 rounded-2xl border border-slate-200 text-center space-y-3">
+        <FileCheck className="w-12 h-12 text-slate-300 mx-auto" />
+        <p className="text-slate-600 font-bold">Chưa có dữ liệu học sinh trong lớp.</p>
+        <p className="text-xs text-slate-400">Vui lòng thêm học sinh tại mục Hồ sơ Học sinh trước khi lập Học bạ số.</p>
+      </div>
+    );
+  }
 
   // Generate structured report card data for selected student
   const grades = localStore.getGrades().filter(g => g.studentId === selectedStudent.id);
@@ -44,8 +56,8 @@ export const DigitalReportCardManager: React.FC = () => {
     schoolName: school.name,
     academicYearId: 'ay-2026-2027',
     academicYearCode: '2026-2027',
-    classId: 'class-8a1',
-    className: '8A1',
+    classId: selectedStudent.classId || currentClass.id,
+    className: selectedStudent.className || currentClass.name,
     level: 'LOWER_SECONDARY',
     gpaTerm1: gpa,
     gpaFullYear: gpa,

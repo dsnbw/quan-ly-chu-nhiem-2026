@@ -22,6 +22,8 @@ import { ExcelService } from '../../core/export/excelExport';
 export const GradebookManager: React.FC = () => {
   const subjects = localStore.getSubjects();
   const students = localStore.getStudents();
+  const classes = localStore.getClasses();
+  const currentClass = classes[0] || { id: 'class-default', name: 'Lớp học' };
   const [selectedSubjectId, setSelectedSubjectId] = useState<string>(subjects[0]?.id || 'sub-math');
   const [selectedTerm, setSelectedTerm] = useState<1 | 2>(1);
   const [grades, setGrades] = useState<GradeEntry[]>(localStore.getGrades());
@@ -41,7 +43,7 @@ export const GradebookManager: React.FC = () => {
       student: st,
       grade: entry || {
         id: `grade-${st.id}-${selectedSubjectId}`,
-        classId: 'class-8a1',
+        classId: currentClass.id,
         subjectId: selectedSubjectId,
         subjectName: currentSubject?.name || 'Môn học',
         studentId: st.id,

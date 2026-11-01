@@ -22,6 +22,8 @@ import { ExcelService } from '../../core/export/excelExport';
 import { StudentDetailModal } from './StudentDetailModal';
 
 export const StudentRegistry: React.FC = () => {
+  const classes = localStore.getClasses();
+  const currentClass = classes[0] || { id: 'class-default', name: 'Lớp 8A1', code: '8A1' };
   const [students, setStudents] = useState<Student[]>(localStore.getStudents());
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedGroup, setSelectedGroup] = useState<string>('ALL');
@@ -67,8 +69,8 @@ export const StudentRegistry: React.FC = () => {
       birthPlace: 'Hà Nội',
       currentAddress: newStudentAddress.trim() || 'Hà Nội',
       status: 'ACTIVE',
-      classId: 'class-8a1',
-      className: '8A1',
+      classId: currentClass.id,
+      className: currentClass.name,
       enrollmentDate: new Date().toISOString().split('T')[0],
       seatRow: 1,
       seatCol: 1,
@@ -164,9 +166,9 @@ export const StudentRegistry: React.FC = () => {
         birthPlace: item.birthPlace || '',
         currentAddress: item.currentAddress || '',
         status: 'ACTIVE',
-        classId: 'class-8a1',
-        className: '8A1',
-        enrollmentDate: '2026-08-26',
+        classId: currentClass.id,
+        className: currentClass.name,
+        enrollmentDate: new Date().toISOString().split('T')[0],
         seatRow: item.seatRow || 1,
         seatCol: item.seatCol || 1,
         groupName: item.groupName || 'Tổ 1',

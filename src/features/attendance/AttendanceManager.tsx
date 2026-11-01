@@ -20,7 +20,16 @@ import { formatDateVN } from '../../utils/formatters';
 
 export const AttendanceManager: React.FC = () => {
   const students = localStore.getStudents();
-  const [selectedDate, setSelectedDate] = useState<string>('2026-08-26');
+  const classes = localStore.getClasses();
+  const currentClass = classes[0] || { id: 'class-default', name: 'Lớp học' };
+  const [selectedDate, setSelectedDate] = useState<string>(() => {
+    const list = localStore.getAttendance();
+    if (list.length > 0) {
+      const dates = [...new Set(list.map(r => r.date))].sort().reverse();
+      return dates[0];
+    }
+    return new Date().toISOString().split('T')[0];
+  });
   const [attendanceRecords, setAttendanceRecords] = useState<AttendanceRecord[]>(localStore.getAttendance());
   const [leaveRequests, setLeaveRequests] = useState<LeaveRequest[]>(localStore.getLeaveRequests());
   const [saveToast, setSaveToast] = useState(false);
@@ -36,7 +45,7 @@ export const AttendanceManager: React.FC = () => {
       student: st,
       record: rec || {
         id: `att-${selectedDate}-${st.id}`,
-        classId: 'class-8a1',
+        classId: currentClass.id,
         studentId: st.id,
         studentName: st.fullName,
         date: selectedDate,

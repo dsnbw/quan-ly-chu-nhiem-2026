@@ -24,13 +24,15 @@ import { ExcelService } from '../../core/export/excelExport';
 export const ReportCenter: React.FC = () => {
   const school = localStore.getSchoolConfig();
   const students = localStore.getStudents();
+  const classes = localStore.getClasses();
+  const currentClass = classes[0] || { name: 'Lớp 8A1', code: '8A1' };
   const attendance = localStore.getAttendance();
   const transactions = localStore.getFinancialTransactions();
   const grades = localStore.getGrades();
   const [selectedReportId, setSelectedReportId] = useState<string>('rep-01');
 
   const reportCatalog = [
-    { id: 'rep-01', title: '1. Danh sách Trích ngang Học sinh Lớp 8A1', category: 'HỒ SƠ LỚP', icon: <Users className="w-4 h-4" /> },
+    { id: 'rep-01', title: `1. Danh sách Trích ngang Học sinh ${currentClass.name}`, category: 'HỒ SƠ LỚP', icon: <Users className="w-4 h-4" /> },
     { id: 'rep-02', title: '2. Sơ đồ Chỗ ngồi & Phân chia Tổ Học kỳ 1', category: 'CHỦ NHIỆM', icon: <Grid className="w-4 h-4" /> },
     { id: 'rep-03', title: '3. Báo cáo Tổng hợp Chuyên cần & Điểm danh Tháng 8', category: 'CHUYÊN CẦN', icon: <CalendarCheck className="w-4 h-4" /> },
     { id: 'rep-04', title: '4. Sổ cái Thu - Chi & Đối soát Quỹ Lớp (TT55)', category: 'TÀI CHÍNH', icon: <Wallet className="w-4 h-4" /> },
@@ -129,7 +131,7 @@ export const ReportCenter: React.FC = () => {
               {reportCatalog.find(r => r.id === selectedReportId)?.title.substring(3).toUpperCase()}
             </h2>
             <p className="text-xs text-slate-500">
-              Lớp: 8A1 • Trường: {school.name} • Năm học: 2026 - 2027
+              Lớp: {currentClass.name} • Trường: {school.name} • Năm học: 2026 - 2027
             </p>
           </div>
 

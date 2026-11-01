@@ -37,9 +37,10 @@ export const ParentPortalView: React.FC = () => {
   const fees = localStore.getStudentFees().filter(f => f.studentId === child.id);
 
   // Leave Request Form State
+  const todayStr = new Date().toISOString().split('T')[0];
   const [isLeaveModalOpen, setIsLeaveModalOpen] = useState(false);
-  const [fromDate, setFromDate] = useState('2026-08-27');
-  const [toDate, setToDate] = useState('2026-08-27');
+  const [fromDate, setFromDate] = useState(todayStr);
+  const [toDate, setToDate] = useState(todayStr);
   const [leaveDays, setLeaveDays] = useState(1);
   const [leaveReason, setLeaveReason] = useState('');
   const [isNoticeAcknowledged, setIsNoticeAcknowledged] = useState(false);

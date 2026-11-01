@@ -19,6 +19,8 @@ import { formatDateVN } from '../../utils/formatters';
 
 export const BehaviorLedgerManager: React.FC = () => {
   const students = localStore.getStudents();
+  const classes = localStore.getClasses();
+  const currentClass = classes[0] || { id: 'class-default', name: 'Lớp 8A1' };
   const eventTypes = localStore.getBehaviorTypes();
   const [observations, setObservations] = useState<BehaviorObservation[]>(localStore.getBehaviorObservations());
 
@@ -60,7 +62,7 @@ export const BehaviorLedgerManager: React.FC = () => {
 
       const newObs: BehaviorObservation = {
         id: 'obs-' + Math.random().toString(36).substring(2, 9),
-        classId: 'class-8a1',
+        classId: currentClass.id,
         studentId: student.id,
         studentName: student.fullName,
         eventTypeId: eventType.id,
@@ -107,7 +109,7 @@ export const BehaviorLedgerManager: React.FC = () => {
         <div>
           <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 flex items-center gap-2.5">
             <Smile className="w-6 h-6 text-emerald-600" />
-            Nhật ký Nề nếp & Điểm Quy ước Nội bộ Lớp 8A1
+            Nhật ký Nề nếp & Điểm Quy ước Nội bộ {currentClass.name}
           </h1>
           <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
             Ghi nhận thi đua hàng ngày, khuyến khích hành vi tích cực và hỗ trợ học sinh tiến bộ
@@ -143,7 +145,7 @@ export const BehaviorLedgerManager: React.FC = () => {
           <div className="p-4 border-b border-slate-100 flex items-center justify-between">
             <h3 className="font-bold text-slate-800 text-sm flex items-center gap-2">
               <Award className="w-4 h-4 text-amber-500" />
-              Tổng hợp Điểm Quy ước Học sinh Lớp 8A1
+              Tổng hợp Điểm Quy ước Học sinh {currentClass.name}
             </h3>
             <span className="text-xs text-slate-500">{students.length} học sinh</span>
           </div>

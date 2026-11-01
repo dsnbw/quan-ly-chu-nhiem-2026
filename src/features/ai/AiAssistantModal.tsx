@@ -28,14 +28,18 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({
   onClose
 }) => {
   const students = localStore.getStudents();
+  const classes = localStore.getClasses();
+  const currentClass = classes[0] || { id: 'class-default', name: 'Lớp học' };
   const [activeTab, setActiveTab] = useState<'comment' | 'agenda' | 'audit' | 'config'>('comment');
 
   // AI Config State
   const [aiConfig, setAiConfig] = useState<{ provider: string, apiKey: string, model: string }>(() => {
     try {
-      return JSON.parse(localStorage.getItem('ai_config') || '{"provider":"gemini","apiKey":"","model":""}');
+      const saved = JSON.parse(localStorage.getItem('ai_config') || '{"provider":"gemini","apiKey":"","model":"gemini-1.5-flash"}');
+      if (!saved.model) saved.model = saved.provider === 'gemini' ? 'gemini-1.5-flash' : 'gpt-4o-mini';
+      return saved;
     } catch {
-      return { provider: 'gemini', apiKey: '', model: '' };
+      return { provider: 'gemini', apiKey: '', model: 'gemini-1.5-flash' };
     }
   });
   const [availableModels, setAvailableModels] = useState<string[]>([]);
@@ -52,6 +56,7 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({
   const [selectedStudentId, setSelectedStudentId] = useState<string>(students[0]?.id || '');
   const [generatedComment, setGeneratedComment] = useState<string>('');
   const [copied, setCopied] = useState(false);
+  const [appliedToast, setAppliedToast] = useState(false);
 
   // Agenda Generator State
   const [agendaWeek, setAgendaWeek] = useState<number>(4);
@@ -191,6 +196,40 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleApplyToReportCard = () => {
+    if (!selectedStudentId || !generatedComment) return;
+    const grades = localStore.getGrades();
+    const studentGrades = grades.filter(g => g.studentId === selectedStudentId);
+    if (studentGrades.length > 0) {
+      studentGrades.forEach(g => {
+        localStore.saveGradeEntry({
+          ...g,
+          teacherComment: generatedComment,
+          lastModifiedAt: new Date().toISOString()
+        });
+      });
+    } else {
+      const student = students.find(s => s.id === selectedStudentId);
+      localStore.saveGradeEntry({
+        id: `grade-${selectedStudentId}-homeroom`,
+        classId: currentClass.id,
+        subjectId: 'sub-homeroom',
+        subjectName: 'Đánh giá Chủ nhiệm',
+        studentId: selectedStudentId,
+        studentName: student?.fullName || 'Học sinh',
+        term: 1,
+        academicYearId: 'ay-2026-2027',
+        teacherComment: generatedComment,
+        commentVisibility: 'HOMEROOM',
+        isLocked: false,
+        lastModifiedBy: localStore.getUserSession().fullName,
+        lastModifiedAt: new Date().toISOString()
+      });
+    }
+    setAppliedToast(true);
+    setTimeout(() => setAppliedToast(false), 2500);
   };
 
   return (
@@ -334,15 +373,24 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({
 
             {generatedComment && (
               <div className="p-4 bg-slate-50 border border-slate-200 rounded-2xl space-y-3">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-wrap items-center justify-between gap-2">
                   <span className="text-xs font-bold text-slate-700">Lời nhận xét gợi ý từ AI:</span>
-                  <button
-                    onClick={() => handleCopy(generatedComment)}
-                    className="flex items-center gap-1 text-xs text-purple-700 font-bold hover:underline"
-                  >
-                    {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-                    <span>{copied ? 'Đã sao chép' : 'Sao chép'}</span>
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => handleCopy(generatedComment)}
+                      className="flex items-center gap-1 text-xs text-slate-700 font-bold hover:text-purple-700 px-2.5 py-1 bg-white border border-slate-200 rounded-lg shadow-2xs hover:bg-slate-50 transition-colors"
+                    >
+                      {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+                      <span>{copied ? 'Đã sao chép' : 'Sao chép'}</span>
+                    </button>
+                    <button
+                      onClick={handleApplyToReportCard}
+                      className="flex items-center gap-1.5 text-xs text-white font-bold px-3 py-1 bg-purple-600 hover:bg-purple-700 rounded-lg shadow-xs transition-colors"
+                    >
+                      <CheckCircle2 className="w-3.5 h-3.5" />
+                      <span>{appliedToast ? '✓ Đã chèn vào học bạ' : 'Chèn vào học bạ'}</span>
+                    </button>
+                  </div>
                 </div>
                 <p className="text-xs text-slate-800 italic bg-white p-3 rounded-xl border border-slate-200 leading-relaxed whitespace-pre-wrap">
                   {generatedComment}
@@ -423,7 +471,7 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({
               disabled={isGenerating}
               className="bg-purple-600 hover:bg-purple-700 font-bold w-full"
             >
-              {isGenerating ? 'Đang phân tích...' : 'Chạy Kiểm tra Toàn diện Dữ liệu Lớp 8A1'}
+              {isGenerating ? 'Đang phân tích...' : `Chạy Kiểm tra Toàn diện Dữ liệu ${currentClass.name}`}
             </Button>
 
             {auditResult && (

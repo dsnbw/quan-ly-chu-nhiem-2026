@@ -176,9 +176,12 @@
 
     <!-- Homeroom Teacher Assessment -->
     <g transform="translate(24, 328)">
-      <rect width="980" height="42" rx="4" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1" />
+      <rect width="980" height="48" rx="4" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1" />
       <text x="12" y="18" fill="#475569" font-size="10" font-weight="700">Ý KIẾN NHẬN XÉT ĐÁNH GIÁ CỦA GIÁO VIÊN CHỦ NHIỆM:</text>
-      <text x="12" y="32" fill="#0f172a" font-size="11">Học sinh chăm ngoan, tư duy logic xuất sắc, có tinh thần trách nhiệm cao, năng nổ giúp đỡ bạn bè và hoàn thành xuất sắc nhiệm vụ cán bộ lớp.</text>
+      <text x="12" y="30" fill="#0f172a" font-size="11">
+        <tspan x="12" dy="0">Học sinh gương mẫu, tư duy logic xuất sắc, tinh thần trách nhiệm cao,</tspan>
+        <tspan x="12" dy="16">tích cực giúp đỡ bạn bè và hoàn thành xuất sắc mọi nhiệm vụ được giao.</tspan>
+      </text>
     </g>
 
     <!-- Signatures & QR Code Section -->

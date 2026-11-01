@@ -148,26 +148,32 @@
 
       <!-- Alert 1: Vision Alert -->
       <g transform="translate(16, 48)">
-        <rect width="470" height="74" rx="8" fill="#0f172a" stroke="#d97706" stroke-width="1" />
-        <text x="16" y="24" fill="#fbbf24" font-size="12" font-weight="700">⚠️ Lưu ý thị lực học đường: Em Trần Bảo Nam</text>
-        <text x="16" y="44" fill="#cbd5e1" font-size="11">Hồ sơ y tế ghi nhận cận thị 4.5 độ. Hệ thống phát hiện đang xếp ở bàn dãy 4.</text>
-        <text x="16" y="62" fill="#38bdf8" font-size="11" font-weight="600">→ Đề xuất: Chuyển lên bàn 1 Dãy giữa để tối ưu góc nhìn bảng</text>
+        <rect width="470" height="80" rx="8" fill="#0f172a" stroke="#d97706" stroke-width="1" />
+        <text x="16" y="22" fill="#fbbf24" font-size="12" font-weight="700">⚠️ Lưu ý thị lực học đường: Em Trần Bảo Nam</text>
+        <text x="16" y="40" fill="#cbd5e1" font-size="11">
+          <tspan x="16" dy="0">Hồ sơ y tế ghi nhận cận thị 4.5 độ. Hệ thống phát hiện em đang ngồi</tspan>
+          <tspan x="16" dy="16">ở bàn dãy 4. → Đề xuất: Đổi lên bàn 1 Dãy giữa để chống lóa mắt.</tspan>
+        </text>
       </g>
 
       <!-- Alert 2: Attendance Warning -->
-      <g transform="translate(16, 134)">
-        <rect width="470" height="74" rx="8" fill="#0f172a" stroke="#ef4444" stroke-width="1" />
-        <text x="16" y="24" fill="#f87171" font-size="12" font-weight="700">⚠️ Theo dõi nguy cơ chuyên cần: Em Vũ Hoàng Long</text>
-        <text x="16" y="44" fill="#cbd5e1" font-size="11">Đã vắng 3 buổi trong tháng (1 có phép, 2 không phép). Có dấu hiệu mệt mỏi.</text>
-        <text x="16" y="62" fill="#fca5a5" font-size="11" font-weight="600">→ Đề xuất: Phối hợp Cán bộ tư vấn tâm lý trường học (TT 19/2025)</text>
+      <g transform="translate(16, 138)">
+        <rect width="470" height="80" rx="8" fill="#0f172a" stroke="#ef4444" stroke-width="1" />
+        <text x="16" y="22" fill="#f87171" font-size="12" font-weight="700">⚠️ Theo dõi nguy cơ chuyên cần: Em Vũ Hoàng Long</text>
+        <text x="16" y="40" fill="#cbd5e1" font-size="11">
+          <tspan x="16" dy="0">Đã vắng 3 buổi trong tháng (1 phép, 2 không phép). Có dấu hiệu sa sút.</tspan>
+          <tspan x="16" dy="16">→ Đề xuất: Phối hợp Cán bộ tư vấn tâm lý trường học (TT 19/2025).</tspan>
+        </text>
       </g>
 
       <!-- Alert 3: Positive Recognition -->
-      <g transform="translate(16, 220)">
-        <rect width="470" height="82" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1" />
-        <text x="16" y="24" fill="#34d399" font-size="12" font-weight="700">🌟 Tuyên dương &amp; Khích lệ: Em Đỗ Minh Khang</text>
-        <text x="16" y="44" fill="#cbd5e1" font-size="11">Đạt giải Nhất HSG Tỉnh môn Toán và hỗ trợ kèm cặp 2 bạn học yếu trong tổ.</text>
-        <text x="16" y="66" fill="#86efac" font-size="11" font-weight="600">→ Hành động: Đã cộng +5 điểm nề nếp tổ &amp; đề xuất khen thưởng tuần</text>
+      <g transform="translate(16, 228)">
+        <rect width="470" height="80" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1" />
+        <text x="16" y="22" fill="#34d399" font-size="12" font-weight="700">🌟 Tuyên dương &amp; Khích lệ: Em Đỗ Minh Khang</text>
+        <text x="16" y="40" fill="#cbd5e1" font-size="11">
+          <tspan x="16" dy="0">Đạt giải Nhất HSG môn Toán và nhiệt tình kèm cặp bạn học yếu trong tổ.</tspan>
+          <tspan x="16" dy="16">→ Hành động: Đã cộng +5 điểm thi đua &amp; đề xuất khen thưởng tuần.</tspan>
+        </text>
       </g>
     </g>
   </g>

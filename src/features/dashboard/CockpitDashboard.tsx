@@ -34,6 +34,8 @@ export const CockpitDashboard: React.FC<CockpitDashboardProps> = ({
   const session = localStore.getUserSession();
   const school = localStore.getSchoolConfig();
   const students = localStore.getStudents();
+  const classes = localStore.getClasses();
+  const currentClass = classes[0] || { name: 'Lớp 8A1', code: '8A1' };
   const attendance = localStore.getAttendance();
   const transactions = localStore.getFinancialTransactions();
   const tasks = localStore.getTasks().filter(t => !t.isCompleted);
@@ -64,7 +66,7 @@ export const CockpitDashboard: React.FC<CockpitDashboardProps> = ({
               Năm học 2026 - 2027 • Học kỳ 1 • Tuần 4
             </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-              Bàn làm việc Chủ nhiệm — Lớp 8A1
+              Bàn làm việc Chủ nhiệm — {currentClass.name}
             </h1>
             <p className="text-brand-100 text-sm max-w-xl">
               Chào {session.fullName}! Hôm nay là ngày {formatDateVN(new Date().toISOString())}. Lớp học có {students.length} học sinh. Sẵn sàng cho ngày làm việc mới!

@@ -20,6 +20,8 @@ import { formatDateVN } from '../../utils/formatters';
 
 export const SupportCenter: React.FC = () => {
   const students = localStore.getStudents();
+  const classes = localStore.getClasses();
+  const currentClass = classes[0] || { name: 'Lớp 8A1', code: '8A1' };
   const [activeTab, setActiveTab] = useState<'early_warning' | 'counseling' | 'rewards' | 'incidents'>('early_warning');
   const [earlyWarnings, setEarlyWarnings] = useState<EarlyWarningSignal[]>(localStore.getEarlyWarnings());
   const [counselingCases, setCounselingCases] = useState<CounselingCase[]>(localStore.getCounselingCases());
@@ -68,7 +70,7 @@ export const SupportCenter: React.FC = () => {
       caseCode: 'CNS-2026-' + Math.floor(Math.random() * 1000),
       studentId: st.id,
       studentName: st.fullName,
-      className: '8A1',
+      className: currentClass.name,
       referredByTeacherName: localStore.getUserSession().fullName,
       referralReason: refReason,
       referralDate: new Date().toISOString().split('T')[0],
@@ -96,7 +98,7 @@ export const SupportCenter: React.FC = () => {
       id: 'rwd-' + Math.random().toString(36).substring(2, 9),
       studentId: st.id,
       studentName: st.fullName,
-      className: '8A1',
+      className: currentClass.name,
       achievementType: 'ETHICS_GOOD_DEED',
       title: rewTitle,
       description: rewDesc || rewTitle,

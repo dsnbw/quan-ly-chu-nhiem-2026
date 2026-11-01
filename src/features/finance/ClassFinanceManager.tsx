@@ -22,6 +22,8 @@ import { formatVND, formatDateVN, formatDateTimeVN } from '../../utils/formatter
 import { ExcelService } from '../../core/export/excelExport';
 
 export const ClassFinanceManager: React.FC = () => {
+  const classes = localStore.getClasses();
+  const currentClass = classes[0] || { id: 'class-default', name: 'Lớp 8A1', code: '8A1' };
   const [campaigns, setCampaigns] = useState<FinancialCampaign[]>(localStore.getFinancialCampaigns());
   const [transactions, setTransactions] = useState<FinancialTransaction[]>(localStore.getFinancialTransactions());
   const [fees, setFees] = useState<StudentFeeEntry[]>(localStore.getStudentFees());
@@ -68,7 +70,7 @@ export const ClassFinanceManager: React.FC = () => {
     const session = localStore.getUserSession();
     const newTx: FinancialTransaction = {
       id: 'tx-' + Math.random().toString(36).substring(2, 9),
-      classId: 'class-8a1',
+      classId: currentClass.id,
       campaignId: campaigns[0]?.id,
       type: 'EXPENSE',
       category: expenseCategory,
@@ -99,7 +101,7 @@ export const ClassFinanceManager: React.FC = () => {
     const session = localStore.getUserSession();
     const newTx: FinancialTransaction = {
       id: 'tx-' + Math.random().toString(36).substring(2, 9),
-      classId: 'class-8a1',
+      classId: currentClass.id,
       campaignId: campaigns[0]?.id,
       studentId: student.id,
       studentName: student.fullName,
@@ -244,7 +246,7 @@ export const ClassFinanceManager: React.FC = () => {
   };
 
   const handleExportExcel = () => {
-    ExcelService.exportFinanceLedger(transactions, '8A1');
+    ExcelService.exportFinanceLedger(transactions, currentClass.code || currentClass.name);
   };
 
   return (
@@ -557,7 +559,7 @@ export const ClassFinanceManager: React.FC = () => {
               onChange={e => setIncomeStudentId(e.target.value)}
               className="w-full px-3 py-2 text-xs sm:text-sm border border-slate-200 rounded-xl outline-none focus:border-brand-500 font-bold text-slate-800"
             >
-              <option value="">-- Chọn học sinh trong danh sách lớp 8A1 --</option>
+              <option value="">-- Chọn học sinh trong danh sách {currentClass.name} --</option>
               {localStore.getStudents().map(s => (
                 <option key={s.id} value={s.id}>
                   {s.studentCode} - {s.fullName} ({s.groupName || 'Tổ 1'})

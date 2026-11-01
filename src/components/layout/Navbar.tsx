@@ -38,6 +38,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const [isRoleDropdownOpen, setIsRoleDropdownOpen] = useState(false);
   const school = localStore.getSchoolConfig();
+  const currentClass = localStore.getClasses()[0] || { name: 'Lớp 8A1', code: '8A1' };
   const syncConfig = localStore.getSyncConfig();
   const outbox = localStore.getOutbox();
   const conflicts = localStore.getConflicts();
@@ -141,7 +142,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   {school.name}
                 </span>
                 <span className="bg-brand-50 text-brand-700 text-[10px] font-extrabold uppercase px-2 py-0.5 rounded border border-brand-200">
-                  Lớp 8A1
+                  {currentClass.name}
                 </span>
               </div>
               <p className="text-[11px] text-slate-500 font-medium">

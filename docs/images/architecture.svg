@@ -30,7 +30,10 @@
     <rect width="210" height="26" rx="13" fill="#0284c7" fill-opacity="0.2" stroke="#0284c7" stroke-width="1" />
     <text x="14" y="17" fill="#38bdf8" font-size="11" font-weight="700" letter-spacing="1">KIẾN TRÚC TOÀN DIỆN</text>
     <text x="0" y="55" fill="#f8fafc" font-size="28" font-weight="800">Mô hình Hệ thống Offline-First &amp; Đồng bộ Đa Nền tảng 2026</text>
-    <text x="0" y="78" fill="#94a3b8" font-size="13">Bảo đảm hoạt động 100% không phụ thuộc Internet, tự động đồng bộ khi có mạng, phân quyền ABAC &amp; AI Copilot</text>
+    <text x="0" y="78" fill="#94a3b8" font-size="12">
+      <tspan x="0" dy="0">Bảo đảm hoạt động 100% không phụ thuộc Internet, tự động đồng bộ khi có mạng,</tspan>
+      <tspan x="0" dy="16">phân quyền ABAC bảo mật &amp; tích hợp Trợ lý AI Copilot sư phạm.</tspan>
+    </text>
   </g>
 
   <!-- LAYER 1: CLIENT RUNTIMES (TOP) -->

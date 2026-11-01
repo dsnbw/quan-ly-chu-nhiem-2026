@@ -16,7 +16,7 @@
   <g transform="translate(36, 30)">
     <rect width="1028" height="60" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1" />
     <text x="24" y="26" fill="#f8fafc" font-size="16" font-weight="800">SỔ QUỸ LỚP MINH BẠCH • BAN ĐẠI DIỆN CHA MẸ HỌC SINH</text>
-    <text x="24" y="46" fill="#94a3b8" font-size="12">Tuân thủ nghiêm ngặt Thông tư 55/2011/TT-BGDĐT • Kế toán kép &amp; Đảo giao dịch (Reversal Audit)</text>
+    <text x="24" y="46" fill="#94a3b8" font-size="11">Chuẩn Thông tư 55/2011/TT-BGDĐT • Kế toán kép &amp; Đảo giao dịch an toàn (Reversal Audit)</text>
     
     <!-- Action buttons -->
     <g transform="translate(680, 14)">
@@ -31,8 +31,8 @@
   <!-- Legal Notice Warning Bar (TT 55/2011) -->
   <g transform="translate(36, 102)">
     <rect width="1028" height="38" rx="8" fill="#451a03" stroke="#b45309" stroke-width="1" />
-    <text x="20" y="24" fill="#fbbf24" font-size="11" font-weight="700">⚖️ QUY ĐỊNH PHÁP LÝ (ĐIỀU 10 - TT 55/2011/TT-BGDĐT):</text>
-    <text x="365" y="24" fill="#fde68a" font-size="11">Nghiêm cấm quyên góp quỹ CMHS để chi trả bảo vệ, vệ sinh, sửa chữa CSVC, mua trang thiết bị trường học hoặc khen thưởng CBGV.</text>
+    <text x="20" y="24" fill="#fbbf24" font-size="11" font-weight="700">⚖️ QUY ĐỊNH PHÁP LÝ (ĐIỀU 10 - TT 55/2011):</text>
+    <text x="310" y="24" fill="#fde68a" font-size="11">Nghiêm cấm quyên góp quỹ CMHS để chi trả bảo vệ, vệ sinh, sửa chữa CSVC hoặc khen thưởng CBGV.</text>
   </g>
 
   <!-- 4 Stat Summary Cards -->
@@ -146,7 +146,7 @@
       <text x="20" y="30" fill="#94a3b8" font-size="12" font-weight="700" text-decoration="line-through">#PC-2605</text>
       <text x="120" y="30" fill="#64748b" font-size="11">28/03/2026 11:00</text>
       <text x="230" y="30" fill="#94a3b8" font-size="12" font-weight="600">Mua quà lưu niệm (Ghi nhầm)</text>
-      <text x="440" y="30" fill="#64748b" font-size="11">Đã thực hiện đảo bút toán hoàn quỹ do nhầm lẫn kế toán</text>
+      <text x="440" y="30" fill="#64748b" font-size="11">Đảo bút toán hoàn quỹ do sai sót</text>
       <text x="730" y="30" fill="#94a3b8" font-size="13" font-weight="700" text-decoration="line-through">-500.000 đ</text>
       <rect x="840" y="14" width="95" height="24" rx="4" fill="#7f1d1d" />
       <text x="887" y="30" fill="#fca5a5" font-size="10" font-weight="700" text-anchor="middle">REVERSED (ĐẢO)</text>

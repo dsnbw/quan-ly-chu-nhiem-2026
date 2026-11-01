@@ -21,7 +21,7 @@ import { formatDateVN } from '../../utils/formatters';
 
 export const HomeroomBookManager: React.FC = () => {
   const school = localStore.getSchoolConfig();
-  const classRoom = localStore.getClasses()[0];
+  const classRoom = localStore.getClasses()[0] || { id: 'class-default', name: 'Lớp 8A1', roomName: 'Phòng 101' };
   const students = localStore.getStudents();
   const [book, setBook] = useState<HomeroomBook>(localStore.getHomeroomBook());
   const [meetings, setMeetings] = useState<ClassMeeting[]>(localStore.getClassMeetings());
@@ -60,7 +60,7 @@ export const HomeroomBookManager: React.FC = () => {
     e.preventDefault();
     const newMeeting: ClassMeeting = {
       id: `meeting-w${meetingWeek}`,
-      classId: 'class-8a1',
+      classId: classRoom.id,
       weekNumber: Number(meetingWeek),
       date: new Date().toISOString().split('T')[0],
       agenda: meetingAgenda.split('\n').filter(l => l.trim()),
@@ -86,7 +86,7 @@ export const HomeroomBookManager: React.FC = () => {
         <div>
           <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 flex items-center gap-2.5">
             <BookMarked className="w-6 h-6 text-purple-600" />
-            Sổ Chủ Nhiệm Điện Tử & Sinh Hoạt Lớp 8A1
+            Sổ Chủ Nhiệm Điện Tử & Sinh Hoạt {classRoom.name}
           </h1>
           <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
             Tự động tổng hợp hồ sơ, quản lý kế hoạch năm học và lưu trữ theo Thông tư 08/2025/TT-BGDĐT
@@ -141,9 +141,9 @@ export const HomeroomBookManager: React.FC = () => {
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <h3 className="font-bold text-slate-800 text-sm flex items-center gap-2">
                 <Users className="w-5 h-5 text-brand-600" />
-                Mục A & B: Thông tin Chung & Ban Cán sự Lớp 8A1
+                Mục A & B: Thông tin Chung & Ban Cán sự {classRoom.name}
               </h3>
-              <Badge variant="primary" size="sm">Sĩ số: 30 học sinh</Badge>
+              <Badge variant="primary" size="sm">Sĩ số: {students.length} học sinh</Badge>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">

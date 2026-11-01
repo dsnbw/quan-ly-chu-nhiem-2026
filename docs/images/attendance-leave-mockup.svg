@@ -152,17 +152,21 @@
       <text x="120" y="100" fill="#10b981" font-size="11" font-weight="600">TT 15/2026/TT-BGDĐT (GVCN duyệt tối đa 3 ngày)</text>
 
       <!-- Reason text box -->
-      <rect x="0" y="118" width="444" height="74" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1" />
-      <text x="12" y="138" fill="#94a3b8" font-size="10" font-weight="700">LÝ DO XIN PHÉP:</text>
-      <text x="12" y="156" fill="#e2e8f0" font-size="11">"Cháu Huy đêm qua bị sốt siêu việt 38.8 độ, gia đình đã cho đi khám tại BV Đa khoa. Bác sĩ yêu cầu nghỉ ngơi theo dõi 1 ngày. Kính nhờ Thầy tạo điều kiện cho cháu."</text>
+      <rect x="0" y="118" width="444" height="82" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="12" y="136" fill="#94a3b8" font-size="10" font-weight="700">LÝ DO XIN PHÉP:</text>
+      <text x="12" y="152" fill="#e2e8f0" font-size="11">
+        <tspan x="12" dy="0">"Cháu Huy đêm qua bị sốt siêu việt 38.8 độ, gia đình đã cho đi khám tại BV Đa khoa.</tspan>
+        <tspan x="12" dy="16">Bác sĩ yêu cầu nghỉ ngơi theo dõi 1 ngày. Kính nhờ Thầy tạo điều kiện cho cháu</tspan>
+        <tspan x="12" dy="16">nghỉ học và hướng dẫn cháu bổ sung bài vở sau."</tspan>
+      </text>
 
       <!-- Attachment mock -->
-      <rect x="0" y="202" width="444" height="34" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1" />
-      <text x="12" y="223" fill="#38bdf8" font-size="11">📎 Don_xin_nghi_viet_tay_kem_don_thuoc.pdf (1.2 MB)</text>
-      <text x="400" y="223" fill="#64748b" font-size="10">Xem tệp</text>
+      <rect x="0" y="208" width="444" height="34" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="12" y="229" fill="#38bdf8" font-size="11">📎 Don_xin_nghi_viet_tay_kem_don_thuoc.pdf (1.2 MB)</text>
+      <text x="400" y="229" fill="#64748b" font-size="10">Xem tệp</text>
 
       <!-- Action Buttons -->
-      <g transform="translate(0, 255)">
+      <g transform="translate(0, 258)">
         <rect width="214" height="42" rx="6" fill="#059669" />
         <text x="107" y="26" fill="#ffffff" font-size="12" font-weight="800" text-anchor="middle">✓ Chấp Thuận Nghỉ Phép</text>
 

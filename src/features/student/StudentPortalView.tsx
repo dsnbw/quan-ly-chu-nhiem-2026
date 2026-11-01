@@ -38,7 +38,7 @@ export const StudentPortalView: React.FC = () => {
             Góc Học Tập & Rèn Luyện của Học sinh
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold">
-            Xin chào {me.fullName}! (Lớp 8A1)
+            Xin chào {me.fullName}! ({me.className || 'Lớp học'})
           </h1>
           <p className="text-blue-100 text-xs sm:text-sm">
             Chức vụ: Lớp trưởng • {me.groupName || 'Tổ 1'} • Vị trí: Bàn {me.seatRow}, Ghế {me.seatCol}
@@ -46,7 +46,7 @@ export const StudentPortalView: React.FC = () => {
         </div>
 
         <div className="p-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 text-center">
-          <p className="text-xs text-blue-200">Điểm Nề nếp Tháng 8</p>
+          <p className="text-xs text-blue-200">Điểm Nề nếp Tích lũy</p>
           <p className="text-2xl sm:text-3xl font-extrabold text-yellow-300">+{totalPoints} đ</p>
           <p className="text-[10px] text-blue-100">Hạng 1 phong trào thi đua</p>
         </div>

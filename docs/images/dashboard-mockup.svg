@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" width="100%" height="100%" style="border-radius: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="dbBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <filter id="shadowLight">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <!-- App Window Background -->
+  <rect width="1100" height="620" rx="14" fill="url(#dbBg)" stroke="#334155" stroke-width="1.5" />
+
+  <!-- Window Header Bar (Electron Window Mockup) -->
+  <rect width="1100" height="42" rx="14" fill="#0b1120" />
+  <circle cx="24" cy="21" r="6" fill="#ef4444" />
+  <circle cx="44" cy="21" r="6" fill="#f59e0b" />
+  <circle cx="64" cy="21" r="6" fill="#10b981" />
+  <text x="550" y="26" fill="#94a3b8" font-size="12" font-weight="600" text-anchor="middle">Quản lý Chủ nhiệm 2026 - Lớp 12A1 • Trường THPT Chuyên Quốc Gia (v1.1.4 Desktop Native)</text>
+
+  <!-- Cockpit Header Area -->
+  <g transform="translate(36, 62)">
+    <rect width="1028" height="65" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1" />
+    <circle cx="36" cy="32" r="18" fill="#3b82f6" fill-opacity="0.2" />
+    <text x="26" y="38" fill="#60a5fa" font-size="20">🏫</text>
+    <text x="68" y="27" fill="#f8fafc" font-size="16" font-weight="800">BÀN LÀM VIỆC CHỦ NHIỆM (COCKPIT DASHBOARD)</text>
+    <text x="68" y="48" fill="#94a3b8" font-size="12">Giáo viên chủ nhiệm: <tspan fill="#e2e8f0" font-weight="600">Thầy Nguyễn Văn Minh</tspan> | Niên khóa: <tspan fill="#38bdf8">2026-2027</tspan> | Tuần học thứ 24</text>
+    
+    <!-- Quick Action Pill -->
+    <g transform="translate(860, 16)">
+      <rect width="150" height="32" rx="6" fill="#2563eb" />
+      <text x="75" y="21" fill="#ffffff" font-size="12" font-weight="700" text-anchor="middle">✨ Trợ lý AI Hỗ trợ</text>
+    </g>
+  </g>
+
+  <!-- 4 Primary KPI Summary Cards -->
+  <g transform="translate(36, 142)">
+    <!-- KPI 1 -->
+    <g transform="translate(0, 0)" filter="url(#shadowLight)">
+      <rect width="242" height="100" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1" />
+      <circle cx="28" cy="28" r="14" fill="#0284c7" fill-opacity="0.2" />
+      <text x="21" y="33" fill="#38bdf8" font-size="14">👥</text>
+      <text x="52" y="24" fill="#94a3b8" font-size="11" font-weight="600">SĨ SỐ &amp; CHUYÊN CẦN</text>
+      <text x="52" y="44" fill="#f8fafc" font-size="18" font-weight="800">42 / 42 <tspan font-size="12" fill="#10b981">(97.6%)</tspan></text>
+      <text x="16" y="78" fill="#64748b" font-size="11">Có mặt: <tspan fill="#34d399" font-weight="600">41</tspan> | Phép: <tspan fill="#60a5fa" font-weight="600">1</tspan> | Vắng: <tspan fill="#f87171" font-weight="600">0</tspan></text>
+      <rect x="16" y="86" width="210" height="4" rx="2" fill="#334155" />
+      <rect x="16" y="86" width="205" height="4" rx="2" fill="#10b981" />
+    </g>
+
+    <!-- KPI 2 -->
+    <g transform="translate(262, 0)" filter="url(#shadowLight)">
+      <rect width="242" height="100" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1" />
+      <circle cx="28" cy="28" r="14" fill="#d97706" fill-opacity="0.2" />
+      <text x="21" y="33" fill="#fbbf24" font-size="14">⭐</text>
+      <text x="52" y="24" fill="#94a3b8" font-size="11" font-weight="600">NỀ NẾP &amp; THI ĐUA</text>
+      <text x="52" y="44" fill="#f8fafc" font-size="18" font-weight="800">98.5 Đ <tspan font-size="12" fill="#fbbf24">(Hạng 2)</tspan></text>
+      <text x="16" y="78" fill="#64748b" font-size="11">Cờ đỏ: <tspan fill="#34d399">Tốt</tspan> • 0 vi phạm nghiêm trọng</text>
+      <rect x="16" y="86" width="210" height="4" rx="2" fill="#334155" />
+      <rect x="16" y="86" width="206" height="4" rx="2" fill="#fbbf24" />
+    </g>
+
+    <!-- KPI 3 -->
+    <g transform="translate(524, 0)" filter="url(#shadowLight)">
+      <rect width="242" height="100" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1" />
+      <circle cx="28" cy="28" r="14" fill="#059669" fill-opacity="0.2" />
+      <text x="21" y="33" fill="#34d399" font-size="14">💰</text>
+      <text x="52" y="24" fill="#94a3b8" font-size="11" font-weight="600">SỐ DƯ QUỸ LỚP TT 55</text>
+      <text x="52" y="44" fill="#34d399" font-size="18" font-weight="800">14.250.000 đ</text>
+      <text x="16" y="78" fill="#64748b" font-size="11">Đã kiểm toán • Đảo bút toán chuẩn</text>
+      <rect x="16" y="86" width="210" height="4" rx="2" fill="#334155" />
+      <rect x="16" y="86" width="160" height="4" rx="2" fill="#059669" />
+    </g>
+
+    <!-- KPI 4 -->
+    <g transform="translate(786, 0)" filter="url(#shadowLight)">
+      <rect width="242" height="100" rx="10" fill="url(#cardGrad)" stroke="#334155" stroke-width="1" />
+      <circle cx="28" cy="28" r="14" fill="#7c3aed" fill-opacity="0.2" />
+      <text x="21" y="33" fill="#a855f7" font-size="14">🛡️</text>
+      <text x="52" y="24" fill="#94a3b8" font-size="11" font-weight="600">HỌC BẠ SỐ TT 70</text>
+      <text x="52" y="44" fill="#f8fafc" font-size="18" font-weight="800">42 / 42 <tspan font-size="12" fill="#a855f7">Sẵn sàng</tspan></text>
+      <text x="16" y="78" fill="#64748b" font-size="11">Chuẩn bị ký số BGH đợt cuối kỳ</text>
+      <rect x="16" y="86" width="210" height="4" rx="2" fill="#334155" />
+      <rect x="16" y="86" width="210" height="4" rx="2" fill="#7c3aed" />
+    </g>
+  </g>
+
+  <!-- Main 2-Column Split: Tasks & Early Warnings -->
+  <g transform="translate(36, 258)">
+    <!-- Column Left: Tasks & Schedule -->
+    <g transform="translate(0, 0)">
+      <rect width="502" height="332" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1" />
+      <text x="20" y="30" fill="#f8fafc" font-size="14" font-weight="700">📅 NHIỆM VỤ &amp; LỊCH CÔNG TÁC HÔM NAY</text>
+      
+      <!-- Task 1 -->
+      <g transform="translate(16, 48)">
+        <rect width="470" height="56" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1" />
+        <circle cx="22" cy="28" r="10" fill="#10b981" />
+        <text x="18" y="32" fill="#ffffff" font-size="11" font-weight="800">✓</text>
+        <text x="42" y="24" fill="#f8fafc" font-size="12" font-weight="600">Điểm danh tiết 1 &amp; Sinh hoạt đầu tuần</text>
+        <text x="42" y="42" fill="#64748b" font-size="11">Hoàn thành lúc 07:15 • Sĩ số có mặt 41/42 học sinh</text>
+        <rect x="400" y="16" width="56" height="24" rx="4" fill="#065f46" />
+        <text x="428" y="32" fill="#34d399" font-size="10" font-weight="700" text-anchor="middle">Đã xong</text>
+      </g>
+
+      <!-- Task 2 -->
+      <g transform="translate(16, 114)">
+        <rect width="470" height="56" rx="8" fill="#0f172a" stroke="#2563eb" stroke-width="1" />
+        <circle cx="22" cy="28" r="10" fill="#2563eb" />
+        <text x="18" y="32" fill="#ffffff" font-size="11" font-weight="800">!</text>
+        <text x="42" y="24" fill="#f8fafc" font-size="12" font-weight="600">Duyệt 01 đơn xin nghỉ phép trực tuyến của Phụ huynh</text>
+        <text x="42" y="42" fill="#93c5fd" font-size="11">Học sinh Lê Gia Huy (Sốt nhẹ) • Thẩm quyền GVCN TT 15</text>
+        <rect x="388" y="16" width="68" height="24" rx="4" fill="#1d4ed8" />
+        <text x="422" y="32" fill="#ffffff" font-size="10" font-weight="700" text-anchor="middle">Xem duyệt</text>
+      </g>
+
+      <!-- Task 3 -->
+      <g transform="translate(16, 180)">
+        <rect width="470" height="56" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1" />
+        <circle cx="22" cy="28" r="10" fill="#64748b" />
+        <text x="19" y="32" fill="#ffffff" font-size="10" font-weight="700">3</text>
+        <text x="42" y="24" fill="#e2e8f0" font-size="12" font-weight="600">Họp giao ban GVCN Khối 12 cùng Ban Giám hiệu</text>
+        <text x="42" y="42" fill="#64748b" font-size="11">Thời gian: 14:00 tại Phòng Hội đồng • Triển khai ký số TT 70</text>
+        <rect x="396" y="16" width="60" height="24" rx="4" fill="#334155" />
+        <text x="426" y="32" fill="#94a3b8" font-size="10" font-weight="700" text-anchor="middle">Sắp diễn ra</text>
+      </g>
+
+      <!-- Task 4 -->
+      <g transform="translate(16, 246)">
+        <rect width="470" height="56" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1" />
+        <circle cx="22" cy="28" r="10" fill="#64748b" />
+        <text x="19" y="32" fill="#ffffff" font-size="10" font-weight="700">4</text>
+        <text x="42" y="24" fill="#e2e8f0" font-size="12" font-weight="600">Đối soát phiếu chi mua tài liệu bồi dưỡng học sinh giỏi</text>
+        <text x="42" y="42" fill="#64748b" font-size="11">Quỹ CMHS • Đính kèm hóa đơn điện tử VAT hợp lệ</text>
+        <rect x="396" y="16" width="60" height="24" rx="4" fill="#334155" />
+        <text x="426" y="32" fill="#94a3b8" font-size="10" font-weight="700" text-anchor="middle">Chờ chi</text>
+      </g>
+    </g>
+
+    <!-- Column Right: Early Warning & Student Care -->
+    <g transform="translate(526, 0)">
+      <rect width="502" height="332" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1" />
+      <text x="20" y="30" fill="#f8fafc" font-size="14" font-weight="700">🚨 CẢNH BÁO SỚM &amp; CHĂM SÓC HỌC SINH (AI RADAR)</text>
+
+      <!-- Alert 1: Vision Alert -->
+      <g transform="translate(16, 48)">
+        <rect width="470" height="74" rx="8" fill="#0f172a" stroke="#d97706" stroke-width="1" />
+        <text x="16" y="24" fill="#fbbf24" font-size="12" font-weight="700">⚠️ Lưu ý thị lực học đường: Em Trần Bảo Nam</text>
+        <text x="16" y="44" fill="#cbd5e1" font-size="11">Hồ sơ y tế ghi nhận cận thị 4.5 độ. Hệ thống phát hiện đang xếp ở bàn dãy 4.</text>
+        <text x="16" y="62" fill="#38bdf8" font-size="11" font-weight="600">→ Đề xuất: Chuyển lên bàn 1 Dãy giữa để tối ưu góc nhìn bảng</text>
+      </g>
+
+      <!-- Alert 2: Attendance Warning -->
+      <g transform="translate(16, 134)">
+        <rect width="470" height="74" rx="8" fill="#0f172a" stroke="#ef4444" stroke-width="1" />
+        <text x="16" y="24" fill="#f87171" font-size="12" font-weight="700">⚠️ Theo dõi nguy cơ chuyên cần: Em Vũ Hoàng Long</text>
+        <text x="16" y="44" fill="#cbd5e1" font-size="11">Đã vắng 3 buổi trong tháng (1 có phép, 2 không phép). Có dấu hiệu mệt mỏi.</text>
+        <text x="16" y="62" fill="#fca5a5" font-size="11" font-weight="600">→ Đề xuất: Phối hợp Cán bộ tư vấn tâm lý trường học (TT 19/2025)</text>
+      </g>
+
+      <!-- Alert 3: Positive Recognition -->
+      <g transform="translate(16, 220)">
+        <rect width="470" height="82" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1" />
+        <text x="16" y="24" fill="#34d399" font-size="12" font-weight="700">🌟 Tuyên dương &amp; Khích lệ: Em Đỗ Minh Khang</text>
+        <text x="16" y="44" fill="#cbd5e1" font-size="11">Đạt giải Nhất HSG Tỉnh môn Toán và hỗ trợ kèm cặp 2 bạn học yếu trong tổ.</text>
+        <text x="16" y="66" fill="#86efac" font-size="11" font-weight="600">→ Hành động: Đã cộng +5 điểm nề nếp tổ &amp; đề xuất khen thưởng tuần</text>
+      </g>
+    </g>
+  </g>
+</svg>

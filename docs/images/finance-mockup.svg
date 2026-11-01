@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" width="100%" height="100%" style="border-radius: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="finBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="cardGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1100" height="620" rx="14" fill="url(#finBg)" stroke="#334155" stroke-width="1.5" />
+
+  <!-- App Header -->
+  <g transform="translate(36, 30)">
+    <rect width="1028" height="60" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1" />
+    <text x="24" y="26" fill="#f8fafc" font-size="16" font-weight="800">SỔ QUỸ LỚP MINH BẠCH • BAN ĐẠI DIỆN CHA MẸ HỌC SINH</text>
+    <text x="24" y="46" fill="#94a3b8" font-size="12">Tuân thủ nghiêm ngặt Thông tư 55/2011/TT-BGDĐT • Kế toán kép &amp; Đảo giao dịch (Reversal Audit)</text>
+    
+    <!-- Action buttons -->
+    <g transform="translate(680, 14)">
+      <rect width="165" height="32" rx="6" fill="#059669" />
+      <text x="82" y="21" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">+ Lập Phiếu Thu / Chi</text>
+      
+      <rect x="175" width="155" height="32" rx="6" fill="#0284c7" />
+      <text x="252" y="21" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">📊 Báo Cáo Công Khai</text>
+    </g>
+  </g>
+
+  <!-- Legal Notice Warning Bar (TT 55/2011) -->
+  <g transform="translate(36, 102)">
+    <rect width="1028" height="38" rx="8" fill="#451a03" stroke="#b45309" stroke-width="1" />
+    <text x="20" y="24" fill="#fbbf24" font-size="11" font-weight="700">⚖️ QUY ĐỊNH PHÁP LÝ (ĐIỀU 10 - TT 55/2011/TT-BGDĐT):</text>
+    <text x="365" y="24" fill="#fde68a" font-size="11">Nghiêm cấm quyên góp quỹ CMHS để chi trả bảo vệ, vệ sinh, sửa chữa CSVC, mua trang thiết bị trường học hoặc khen thưởng CBGV.</text>
+  </g>
+
+  <!-- 4 Stat Summary Cards -->
+  <g transform="translate(36, 152)">
+    <!-- Total Income -->
+    <g transform="translate(0, 0)">
+      <rect width="242" height="85" rx="8" fill="url(#cardGrad2)" stroke="#334155" stroke-width="1" />
+      <text x="16" y="26" fill="#94a3b8" font-size="11" font-weight="600">TỔNG CÁC KHOẢN THU</text>
+      <text x="16" y="54" fill="#38bdf8" font-size="20" font-weight="800">25.200.000 đ</text>
+      <text x="16" y="72" fill="#64748b" font-size="10">42/42 Học sinh tự nguyện đóng góp</text>
+    </g>
+
+    <!-- Total Expense -->
+    <g transform="translate(262, 0)">
+      <rect width="242" height="85" rx="8" fill="url(#cardGrad2)" stroke="#334155" stroke-width="1" />
+      <text x="16" y="26" fill="#94a3b8" font-size="11" font-weight="600">TỔNG CÁC KHOẢN CHI</text>
+      <text x="16" y="54" fill="#f87171" font-size="20" font-weight="800">10.950.000 đ</text>
+      <text x="16" y="72" fill="#64748b" font-size="10">100% Hoạt động học tập &amp; ngoại khóa</text>
+    </g>
+
+    <!-- Adjustments / Reversals -->
+    <g transform="translate(524, 0)">
+      <rect width="242" height="85" rx="8" fill="url(#cardGrad2)" stroke="#334155" stroke-width="1" />
+      <text x="16" y="26" fill="#94a3b8" font-size="11" font-weight="600">ĐIỀU CHỈNH / ĐẢO BÚT TOÁN</text>
+      <text x="16" y="54" fill="#e2e8f0" font-size="20" font-weight="800">0 đ</text>
+      <text x="16" y="72" fill="#64748b" font-size="10">01 Bút toán đã hoàn nguyên an toàn</text>
+    </g>
+
+    <!-- Current Net Balance -->
+    <g transform="translate(786, 0)">
+      <rect width="242" height="85" rx="8" fill="url(#cardGrad2)" stroke="#059669" stroke-width="1.5" />
+      <text x="16" y="26" fill="#a7f3d0" font-size="11" font-weight="700">SỐ DƯ QUỸ KHẢ DỤNG</text>
+      <text x="16" y="54" fill="#34d399" font-size="22" font-weight="900">14.250.000 đ</text>
+      <text x="16" y="72" fill="#10b981" font-size="10">Khớp đối soát 100% với thủ quỹ lớp</text>
+    </g>
+  </g>
+
+  <!-- Transaction Ledger Table -->
+  <g transform="translate(36, 252)">
+    <rect width="1028" height="340" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1" />
+    
+    <!-- Table Header -->
+    <rect width="1028" height="38" rx="10 10 0 0" fill="#0f172a" />
+    <text x="20" y="24" fill="#94a3b8" font-size="11" font-weight="700">MÃ GD</text>
+    <text x="120" y="24" fill="#94a3b8" font-size="11" font-weight="700">NGÀY GIỜ</text>
+    <text x="230" y="24" fill="#94a3b8" font-size="11" font-weight="700">DANH MỤC CHI PHÍ</text>
+    <text x="440" y="24" fill="#94a3b8" font-size="11" font-weight="700">NỘI DUNG DIỄN GIẢI</text>
+    <text x="730" y="24" fill="#94a3b8" font-size="11" font-weight="700">SỐ TIỀN</text>
+    <text x="860" y="24" fill="#94a3b8" font-size="11" font-weight="700">TRẠNG THÁI</text>
+    <text x="960" y="24" fill="#94a3b8" font-size="11" font-weight="700">THAO TÁC</text>
+
+    <!-- Row 1: Thu quỹ HK2 -->
+    <g transform="translate(0, 40)">
+      <rect width="1028" height="52" fill="#1e293b" />
+      <text x="20" y="30" fill="#38bdf8" font-size="12" font-weight="700">#PT-2601</text>
+      <text x="120" y="30" fill="#cbd5e1" font-size="11">15/01/2026 08:30</text>
+      <text x="230" y="30" fill="#f8fafc" font-size="12" font-weight="600">Quỹ hoạt động CMHS HK2</text>
+      <text x="440" y="30" fill="#94a3b8" font-size="11">Thu quỹ học kỳ 2 theo nghị quyết họp CMHS đầu năm</text>
+      <text x="730" y="30" fill="#34d399" font-size="13" font-weight="800">+25.200.000 đ</text>
+      <rect x="850" y="14" width="75" height="24" rx="4" fill="#065f46" />
+      <text x="887" y="30" fill="#34d399" font-size="10" font-weight="700" text-anchor="middle">Đã thu đủ</text>
+      <text x="975" y="30" fill="#64748b" font-size="11">Xem phiếu</text>
+      <line x1="16" y1="52" x2="1012" y2="52" stroke="#334155" stroke-width="0.8" />
+    </g>
+
+    <!-- Row 2: Chi quà Tết học sinh khó khăn -->
+    <g transform="translate(0, 94)">
+      <rect width="1028" height="52" fill="#0f172a" fill-opacity="0.5" />
+      <text x="20" y="30" fill="#f87171" font-size="12" font-weight="700">#PC-2602</text>
+      <text x="120" y="30" fill="#cbd5e1" font-size="11">20/01/2026 14:15</text>
+      <text x="230" y="30" fill="#f8fafc" font-size="12" font-weight="600">Thăm hỏi học sinh khó khăn</text>
+      <text x="440" y="30" fill="#94a3b8" font-size="11">Tặng 03 suất quà Tết động viên học sinh nghèo vượt khó</text>
+      <text x="730" y="30" fill="#f87171" font-size="13" font-weight="800">-3.000.000 đ</text>
+      <rect x="850" y="14" width="75" height="24" rx="4" fill="#1e293b" stroke="#334155" stroke-width="1" />
+      <text x="887" y="30" fill="#cbd5e1" font-size="10" font-weight="700" text-anchor="middle">Có chứng từ</text>
+      <text x="975" y="30" fill="#64748b" font-size="11">Xem phiếu</text>
+      <line x1="16" y1="52" x2="1012" y2="52" stroke="#334155" stroke-width="0.8" />
+    </g>
+
+    <!-- Row 3: Chi tài liệu học tập -->
+    <g transform="translate(0, 148)">
+      <rect width="1028" height="52" fill="#1e293b" />
+      <text x="20" y="30" fill="#f87171" font-size="12" font-weight="700">#PC-2603</text>
+      <text x="120" y="30" fill="#cbd5e1" font-size="11">10/02/2026 09:00</text>
+      <text x="230" y="30" fill="#f8fafc" font-size="12" font-weight="600">In ấn tài liệu ôn TN THPT</text>
+      <text x="440" y="30" fill="#94a3b8" font-size="11">In tập đề cương ôn thi tốt nghiệp 4 môn thi chính thức</text>
+      <text x="730" y="30" fill="#f87171" font-size="13" font-weight="800">-4.200.000 đ</text>
+      <rect x="850" y="14" width="75" height="24" rx="4" fill="#1e293b" stroke="#334155" stroke-width="1" />
+      <text x="887" y="30" fill="#cbd5e1" font-size="10" font-weight="700" text-anchor="middle">Hóa đơn VAT</text>
+      <text x="975" y="30" fill="#64748b" font-size="11">Xem phiếu</text>
+      <line x1="16" y1="52" x2="1012" y2="52" stroke="#334155" stroke-width="0.8" />
+    </g>
+
+    <!-- Row 4: Chi hoạt động ngoại khóa 26/3 -->
+    <g transform="translate(0, 202)">
+      <rect width="1028" height="52" fill="#0f172a" fill-opacity="0.5" />
+      <text x="20" y="30" fill="#f87171" font-size="12" font-weight="700">#PC-2604</text>
+      <text x="120" y="30" fill="#cbd5e1" font-size="11">24/03/2026 15:45</text>
+      <text x="230" y="30" fill="#f8fafc" font-size="12" font-weight="600">Hội trại truyền thống 26/3</text>
+      <text x="440" y="30" fill="#94a3b8" font-size="11">Nước uống, dụng cụ dựng lều trại và hỗ trợ ăn trưa</text>
+      <text x="730" y="30" fill="#f87171" font-size="13" font-weight="800">-3.750.000 đ</text>
+      <rect x="850" y="14" width="75" height="24" rx="4" fill="#1e293b" stroke="#334155" stroke-width="1" />
+      <text x="887" y="30" fill="#cbd5e1" font-size="10" font-weight="700" text-anchor="middle">Hóa đơn VAT</text>
+      <text x="975" y="30" fill="#64748b" font-size="11">Xem phiếu</text>
+      <line x1="16" y1="52" x2="1012" y2="52" stroke="#334155" stroke-width="0.8" />
+    </g>
+
+    <!-- Row 5: Reversal Transaction Demonstration -->
+    <g transform="translate(0, 256)">
+      <rect width="1028" height="52" fill="#1e293b" />
+      <text x="20" y="30" fill="#94a3b8" font-size="12" font-weight="700" text-decoration="line-through">#PC-2605</text>
+      <text x="120" y="30" fill="#64748b" font-size="11">28/03/2026 11:00</text>
+      <text x="230" y="30" fill="#94a3b8" font-size="12" font-weight="600">Mua quà lưu niệm (Ghi nhầm)</text>
+      <text x="440" y="30" fill="#64748b" font-size="11">Đã thực hiện đảo bút toán hoàn quỹ do nhầm lẫn kế toán</text>
+      <text x="730" y="30" fill="#94a3b8" font-size="13" font-weight="700" text-decoration="line-through">-500.000 đ</text>
+      <rect x="840" y="14" width="95" height="24" rx="4" fill="#7f1d1d" />
+      <text x="887" y="30" fill="#fca5a5" font-size="10" font-weight="700" text-anchor="middle">REVERSED (ĐẢO)</text>
+      <text x="965" y="30" fill="#38bdf8" font-size="11">Xem vết audit</text>
+    </g>
+  </g>
+</svg>

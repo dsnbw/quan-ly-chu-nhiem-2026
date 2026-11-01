@@ -1,0 +1,242 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 640" width="100%" height="100%" style="border-radius: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="stBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="deskGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#334155" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1100" height="640" rx="14" fill="url(#stBg)" stroke="#334155" stroke-width="1.5" />
+
+  <!-- App Header -->
+  <g transform="translate(36, 30)">
+    <rect width="1028" height="60" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1" />
+    <text x="24" y="26" fill="#f8fafc" font-size="16" font-weight="800">SƠ ĐỒ CHỖ NGỒI LỚP HỌC &amp; PHÂN TỔ HỌC TẬP THÔNG MINH</text>
+    <text x="24" y="46" fill="#94a3b8" font-size="12">Mô hình 3 dãy bàn đôi • Tối ưu thị lực học đường • Cân bằng học lực và phân chia tổ</text>
+    
+    <!-- Action buttons right -->
+    <g transform="translate(680, 14)">
+      <rect width="165" height="32" rx="6" fill="#0284c7" />
+      <text x="82" y="21" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">⚡ Tự động xếp chỗ (Thị lực)</text>
+      
+      <rect x="175" width="155" height="32" rx="6" fill="#10b981" />
+      <text x="252" y="21" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">🖨️ In Sơ đồ Lớp A4</text>
+    </g>
+  </g>
+
+  <!-- Teacher Podium / Blackboard -->
+  <g transform="translate(350, 105)">
+    <rect width="400" height="42" rx="6" fill="#064e3b" stroke="#059669" stroke-width="2" />
+    <text x="200" y="26" fill="#a7f3d0" font-size="13" font-weight="800" text-anchor="middle">BỤC GIẢNG &amp; BẢNG TỪ CHỐNG LÓA CỦA GIÁO VIÊN</text>
+  </g>
+
+  <!-- Door indicators -->
+  <g transform="translate(60, 110)">
+    <rect width="80" height="26" rx="4" fill="#334155" />
+    <text x="40" y="17" fill="#cbd5e1" font-size="10" font-weight="600" text-anchor="middle">🚪 CỬA RA VÀO</text>
+  </g>
+
+  <!-- 3 ROW COLUMNS (DÃY 1, DÃY 2, DÃY 3) -->
+  
+  <!-- DÃY 1 (TRÁI - TỔ 1) -->
+  <g transform="translate(60, 165)">
+    <rect width="280" height="440" rx="8" fill="#0f172a" stroke="#0284c7" stroke-width="1.2" stroke-dasharray="4,4" />
+    <text x="140" y="22" fill="#38bdf8" font-size="12" font-weight="800" text-anchor="middle">DÃY 1 • TỔ 1 (CỬA SỔ)</text>
+
+    <!-- Bàn 1 (Bàn đầu) -->
+    <g transform="translate(15, 34)">
+      <rect width="250" height="68" rx="6" fill="url(#deskGrad)" stroke="#0284c7" stroke-width="1" />
+      <text x="12" y="18" fill="#94a3b8" font-size="10" font-weight="700">BÀN 1 (HÀNG 1)</text>
+      <rect x="175" y="6" width="65" height="16" rx="3" fill="#0369a1" />
+      <text x="207" y="18" fill="#ffffff" font-size="9" font-weight="700" text-anchor="middle">👓 CẬN THỊ</text>
+      <!-- Ghế trái -->
+      <rect x="12" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="1" />
+      <text x="20" y="42" fill="#ffffff" font-size="11" font-weight="700">1. Trần Bảo Nam</text>
+      <text x="20" y="54" fill="#38bdf8" font-size="9">Cận 4.5D • Tổ trưởng</text>
+      <!-- Ghế phải -->
+      <rect x="130" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="138" y="42" fill="#ffffff" font-size="11" font-weight="700">2. Lê Hoàng Anh</text>
+      <text x="138" y="54" fill="#94a3b8" font-size="9">Cận 2.0D • Tổ 1</text>
+    </g>
+
+    <!-- Bàn 2 -->
+    <g transform="translate(15, 114)">
+      <rect width="250" height="68" rx="6" fill="url(#deskGrad)" stroke="#334155" stroke-width="1" />
+      <text x="12" y="18" fill="#94a3b8" font-size="10" font-weight="700">BÀN 2 (HÀNG 2)</text>
+      <rect x="12" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="20" y="42" fill="#ffffff" font-size="11" font-weight="700">3. Vũ Thùy Dung</text>
+      <text x="20" y="54" fill="#94a3b8" font-size="9">Tổ 1</text>
+      <rect x="130" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="138" y="42" fill="#ffffff" font-size="11" font-weight="700">4. Đỗ Quang Huy</text>
+      <text x="138" y="54" fill="#94a3b8" font-size="9">Tổ 1</text>
+    </g>
+
+    <!-- Bàn 3 -->
+    <g transform="translate(15, 194)">
+      <rect width="250" height="68" rx="6" fill="url(#deskGrad)" stroke="#334155" stroke-width="1" />
+      <text x="12" y="18" fill="#94a3b8" font-size="10" font-weight="700">BÀN 3 (HÀNG 3)</text>
+      <rect x="12" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="20" y="42" fill="#ffffff" font-size="11" font-weight="700">5. Mai Phương Thảo</text>
+      <text x="20" y="54" fill="#94a3b8" font-size="9">Tổ 1</text>
+      <rect x="130" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="138" y="42" fill="#ffffff" font-size="11" font-weight="700">6. Bùi Nhật Minh</text>
+      <text x="138" y="54" fill="#94a3b8" font-size="9">Tổ 1</text>
+    </g>
+
+    <!-- Bàn 4 & 5 Mockup indicator -->
+    <g transform="translate(15, 274)">
+      <rect width="250" height="68" rx="6" fill="url(#deskGrad)" stroke="#334155" stroke-width="1" />
+      <text x="12" y="18" fill="#94a3b8" font-size="10" font-weight="700">BÀN 4 (HÀNG 4)</text>
+      <rect x="12" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="20" y="42" fill="#ffffff" font-size="11" font-weight="700">7. Đặng Quốc Anh</text>
+      <text x="20" y="54" fill="#94a3b8" font-size="9">Tổ 1</text>
+      <rect x="130" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="138" y="42" fill="#ffffff" font-size="11" font-weight="700">8. Phạm Yến Nhi</text>
+      <text x="138" y="54" fill="#94a3b8" font-size="9">Tổ 1</text>
+    </g>
+    <g transform="translate(15, 354)">
+      <rect width="250" height="68" rx="6" fill="url(#deskGrad)" stroke="#334155" stroke-width="1" />
+      <text x="12" y="18" fill="#94a3b8" font-size="10" font-weight="700">BÀN 5 (HÀNG 5 - CUỐI)</text>
+      <rect x="12" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="20" y="42" fill="#ffffff" font-size="11" font-weight="700">9. Hà Trọng Hiếu</text>
+      <text x="20" y="54" fill="#94a3b8" font-size="9">Cao 1m78</text>
+      <rect x="130" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="138" y="42" fill="#ffffff" font-size="11" font-weight="700">10. Trịnh Đức An</text>
+      <text x="138" y="54" fill="#94a3b8" font-size="9">Cao 1m80</text>
+    </g>
+  </g>
+
+  <!-- DÃY 2 (GIỮA - TỔ 2 & 3) -->
+  <g transform="translate(410, 165)">
+    <rect width="280" height="440" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.2" stroke-dasharray="4,4" />
+    <text x="140" y="22" fill="#34d399" font-size="12" font-weight="800" text-anchor="middle">DÃY 2 • DÃY TRUNG TÂM (CHÍNH DIỆN BẢNG)</text>
+
+    <!-- Bàn 1 (Bàn đầu) -->
+    <g transform="translate(15, 34)">
+      <rect width="250" height="68" rx="6" fill="url(#deskGrad)" stroke="#10b981" stroke-width="1" />
+      <text x="12" y="18" fill="#94a3b8" font-size="10" font-weight="700">BÀN 1 (HÀNG 1)</text>
+      <rect x="175" y="6" width="65" height="16" rx="3" fill="#047857" />
+      <text x="207" y="18" fill="#ffffff" font-size="9" font-weight="700" text-anchor="middle">🌟 CÁN BỘ</text>
+      <rect x="12" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1" />
+      <text x="20" y="42" fill="#ffffff" font-size="11" font-weight="700">11. Nguyễn Văn An</text>
+      <text x="20" y="54" fill="#34d399" font-size="9">Lớp Trưởng</text>
+      <rect x="130" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#10b981" stroke-width="1" />
+      <text x="138" y="42" fill="#ffffff" font-size="11" font-weight="700">12. Trần Thị Bình</text>
+      <text x="138" y="54" fill="#34d399" font-size="9">Bí Thư Đoàn</text>
+    </g>
+
+    <!-- Bàn 2 -->
+    <g transform="translate(15, 114)">
+      <rect width="250" height="68" rx="6" fill="url(#deskGrad)" stroke="#334155" stroke-width="1" />
+      <text x="12" y="18" fill="#94a3b8" font-size="10" font-weight="700">BÀN 2 (HÀNG 2)</text>
+      <rect x="12" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="20" y="42" fill="#ffffff" font-size="11" font-weight="700">13. Lê Cẩm Ly</text>
+      <text x="20" y="54" fill="#94a3b8" font-size="9">Lớp Phó Học Tập</text>
+      <rect x="130" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="138" y="42" fill="#ffffff" font-size="11" font-weight="700">14. Phạm Gia Bảo</text>
+      <text x="138" y="54" fill="#94a3b8" font-size="9">Tổ 2</text>
+    </g>
+
+    <!-- Bàn 3, 4, 5 preview rows -->
+    <g transform="translate(15, 194)">
+      <rect width="250" height="68" rx="6" fill="url(#deskGrad)" stroke="#334155" stroke-width="1" />
+      <text x="12" y="18" fill="#94a3b8" font-size="10" font-weight="700">BÀN 3 (HÀNG 3)</text>
+      <rect x="12" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="20" y="42" fill="#ffffff" font-size="11" font-weight="700">15. Hoàng Minh Quân</text>
+      <text x="20" y="54" fill="#94a3b8" font-size="9">Tổ 2</text>
+      <rect x="130" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="138" y="42" fill="#ffffff" font-size="11" font-weight="700">16. Ngô Bảo Châu</text>
+      <text x="138" y="54" fill="#94a3b8" font-size="9">Tổ 2</text>
+    </g>
+
+    <g transform="translate(15, 274)">
+      <rect width="250" height="68" rx="6" fill="url(#deskGrad)" stroke="#334155" stroke-width="1" />
+      <text x="12" y="18" fill="#94a3b8" font-size="10" font-weight="700">BÀN 4 (HÀNG 4)</text>
+      <rect x="12" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="20" y="42" fill="#ffffff" font-size="11" font-weight="700">17. Đỗ Minh Khang</text>
+      <text x="20" y="54" fill="#94a3b8" font-size="9">HSG Toán</text>
+      <rect x="130" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="138" y="42" fill="#ffffff" font-size="11" font-weight="700">18. Dương Thúy Kiều</text>
+      <text x="138" y="54" fill="#94a3b8" font-size="9">Tổ 3</text>
+    </g>
+
+    <g transform="translate(15, 354)">
+      <rect width="250" height="68" rx="6" fill="url(#deskGrad)" stroke="#334155" stroke-width="1" />
+      <text x="12" y="18" fill="#94a3b8" font-size="10" font-weight="700">BÀN 5 (HÀNG 5 - CUỐI)</text>
+      <rect x="12" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="20" y="42" fill="#ffffff" font-size="11" font-weight="700">19. Phan Đình Phùng</text>
+      <text x="20" y="54" fill="#94a3b8" font-size="9">Cao 1m79</text>
+      <rect x="130" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="138" y="42" fill="#ffffff" font-size="11" font-weight="700">20. Cao Xuân Dục</text>
+      <text x="138" y="54" fill="#94a3b8" font-size="9">Cao 1m81</text>
+    </g>
+  </g>
+
+  <!-- DÃY 3 (PHẢI - TỔ 4) -->
+  <g transform="translate(760, 165)">
+    <rect width="280" height="440" rx="8" fill="#0f172a" stroke="#f59e0b" stroke-width="1.2" stroke-dasharray="4,4" />
+    <text x="140" y="22" fill="#fbbf24" font-size="12" font-weight="800" text-anchor="middle">DÃY 3 • TỔ 4 (HÀNH LANG)</text>
+
+    <!-- Bàn 1 -->
+    <g transform="translate(15, 34)">
+      <rect width="250" height="68" rx="6" fill="url(#deskGrad)" stroke="#f59e0b" stroke-width="1" />
+      <text x="12" y="18" fill="#94a3b8" font-size="10" font-weight="700">BÀN 1 (HÀNG 1)</text>
+      <rect x="175" y="6" width="65" height="16" rx="3" fill="#b45309" />
+      <text x="207" y="18" fill="#ffffff" font-size="9" font-weight="700" text-anchor="middle">👓 CẬN THỊ</text>
+      <rect x="12" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#f59e0b" stroke-width="1" />
+      <text x="20" y="42" fill="#ffffff" font-size="11" font-weight="700">21. Lý Thu Thảo</text>
+      <text x="20" y="54" fill="#fbbf24" font-size="9">Cận 3.0D • Tổ 4</text>
+      <rect x="130" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="138" y="42" fill="#ffffff" font-size="11" font-weight="700">22. Võ Văn Kiệt</text>
+      <text x="138" y="54" fill="#94a3b8" font-size="9">Tổ 4</text>
+    </g>
+
+    <!-- Bàn 2 -->
+    <g transform="translate(15, 114)">
+      <rect width="250" height="68" rx="6" fill="url(#deskGrad)" stroke="#334155" stroke-width="1" />
+      <text x="12" y="18" fill="#94a3b8" font-size="10" font-weight="700">BÀN 2 (HÀNG 2)</text>
+      <rect x="12" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="20" y="42" fill="#ffffff" font-size="11" font-weight="700">23. Nguyễn Thảo My</text>
+      <text x="20" y="54" fill="#94a3b8" font-size="9">Tổ 4</text>
+      <rect x="130" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="138" y="42" fill="#ffffff" font-size="11" font-weight="700">24. Trịnh Công Sơn</text>
+      <text x="138" y="54" fill="#94a3b8" font-size="9">Tổ 4</text>
+    </g>
+
+    <!-- Bàn 3, 4, 5 -->
+    <g transform="translate(15, 194)">
+      <rect width="250" height="68" rx="6" fill="url(#deskGrad)" stroke="#334155" stroke-width="1" />
+      <text x="12" y="18" fill="#94a3b8" font-size="10" font-weight="700">BÀN 3 (HÀNG 3)</text>
+      <rect x="12" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="20" y="42" fill="#ffffff" font-size="11" font-weight="700">25. Chu Văn An</text>
+      <text x="20" y="54" fill="#94a3b8" font-size="9">Tổ 4</text>
+      <rect x="130" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="138" y="42" fill="#ffffff" font-size="11" font-weight="700">26. Lương Thế Vinh</text>
+      <text x="138" y="54" fill="#94a3b8" font-size="9">Tổ 4</text>
+    </g>
+    <g transform="translate(15, 274)">
+      <rect width="250" height="68" rx="6" fill="url(#deskGrad)" stroke="#334155" stroke-width="1" />
+      <text x="12" y="18" fill="#94a3b8" font-size="10" font-weight="700">BÀN 4 (HÀNG 4)</text>
+      <rect x="12" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="20" y="42" fill="#ffffff" font-size="11" font-weight="700">27. Tạ Quang Bửu</text>
+      <text x="20" y="54" fill="#94a3b8" font-size="9">Tổ 4</text>
+      <rect x="130" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="138" y="42" fill="#ffffff" font-size="11" font-weight="700">28. Nguyễn Du</text>
+      <text x="138" y="54" fill="#94a3b8" font-size="9">Tổ 4</text>
+    </g>
+    <g transform="translate(15, 354)">
+      <rect width="250" height="68" rx="6" fill="url(#deskGrad)" stroke="#334155" stroke-width="1" />
+      <text x="12" y="18" fill="#94a3b8" font-size="10" font-weight="700">BÀN 5 (HÀNG 5 - CUỐI)</text>
+      <rect x="12" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="20" y="42" fill="#ffffff" font-size="11" font-weight="700">29. Nguyễn Bỉnh Khiêm</text>
+      <text x="20" y="54" fill="#94a3b8" font-size="9">Cao 1m78</text>
+      <rect x="130" y="26" width="108" height="34" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="138" y="42" fill="#ffffff" font-size="11" font-weight="700">30. Lê Quý Đôn</text>
+      <text x="138" y="54" fill="#94a3b8" font-size="9">Cao 1m82</text>
+    </g>
+  </g>
+</svg>

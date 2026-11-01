@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" width="100%" height="100%" style="border-radius: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b0f19" />
+      <stop offset="100%" stop-color="#111827" />
+    </linearGradient>
+    <linearGradient id="boxGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="boxGradActive" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.3" />
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981" />
+    </marker>
+  </defs>
+
+  <rect width="1200" height="640" rx="16" fill="url(#bg)" />
+
+  <!-- Title section -->
+  <g transform="translate(60, 45)">
+    <rect width="210" height="26" rx="13" fill="#0284c7" fill-opacity="0.2" stroke="#0284c7" stroke-width="1" />
+    <text x="14" y="17" fill="#38bdf8" font-size="11" font-weight="700" letter-spacing="1">KIẾN TRÚC TOÀN DIỆN</text>
+    <text x="0" y="55" fill="#f8fafc" font-size="28" font-weight="800">Mô hình Hệ thống Offline-First &amp; Đồng bộ Đa Nền tảng 2026</text>
+    <text x="0" y="78" fill="#94a3b8" font-size="13">Bảo đảm hoạt động 100% không phụ thuộc Internet, tự động đồng bộ khi có mạng, phân quyền ABAC &amp; AI Copilot</text>
+  </g>
+
+  <!-- LAYER 1: CLIENT RUNTIMES (TOP) -->
+  <g transform="translate(60, 150)">
+    <rect width="1080" height="110" rx="12" fill="url(#boxGrad1)" stroke="#334155" stroke-width="1.2" filter="url(#cardShadow)" />
+    <text x="24" y="32" fill="#38bdf8" font-size="12" font-weight="700" letter-spacing="1">TẦNG ỨNG DỤNG ĐẦU CUỐI (CLIENT MULTI-PLATFORM TIER)</text>
+
+    <!-- App 1: Desktop Electron -->
+    <g transform="translate(24, 46)">
+      <rect width="320" height="50" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1" />
+      <text x="16" y="26" fill="#f8fafc" font-size="14" font-weight="700">💻 Windows Desktop (.exe)</text>
+      <text x="16" y="42" fill="#94a3b8" font-size="11">Electron 34 • Window Controls • Offline SQLite</text>
+    </g>
+
+    <!-- App 2: Android APK -->
+    <g transform="translate(376, 46)">
+      <rect width="320" height="50" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1" />
+      <text x="16" y="26" fill="#f8fafc" font-size="14" font-weight="700">📱 Android Mobile (.apk)</text>
+      <text x="16" y="42" fill="#94a3b8" font-size="11">Capacitor 7 • Touch-Optimized • Push Notifications</text>
+    </g>
+
+    <!-- App 3: Web App -->
+    <g transform="translate(728, 46)">
+      <rect width="328" height="50" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1" />
+      <text x="16" y="26" fill="#f8fafc" font-size="14" font-weight="700">🌐 Web Portal (PWA)</text>
+      <text x="16" y="42" fill="#94a3b8" font-size="11">React 18 + Vite + Tailwind • Cổng PH &amp; HS</text>
+    </g>
+  </g>
+
+  <!-- Connectors from Layer 1 to Layer 2 -->
+  <path d="M 220 260 V 300" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrow)" />
+  <path d="M 600 260 V 300" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrow)" />
+  <path d="M 980 260 V 300" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrow)" />
+
+  <!-- LAYER 2: OFFLINE-FIRST ENGINE & LOCAL DATA STORE -->
+  <g transform="translate(60, 305)">
+    <rect width="1080" height="120" rx="12" fill="url(#boxGradActive)" stroke="#6366f1" stroke-width="1.4" filter="url(#cardShadow)" />
+    <text x="24" y="32" fill="#818cf8" font-size="12" font-weight="700" letter-spacing="1">ĐỘNG CƠ LƯU TRỮ NỘI TẠI &amp; QUẢN LÝ DỮ LIỆU CỤC BỘ (OFFLINE-FIRST CORE STORE)</text>
+
+    <!-- Core Module 1 -->
+    <g transform="translate(24, 46)">
+      <rect width="250" height="58" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="14" y="24" fill="#f8fafc" font-size="13" font-weight="700">📦 localStore Engine</text>
+      <text x="14" y="44" fill="#94a3b8" font-size="11">IndexedDB / LocalStorage / RAM</text>
+    </g>
+
+    <!-- Core Module 2 -->
+    <g transform="translate(290, 46)">
+      <rect width="250" height="58" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="14" y="24" fill="#f8fafc" font-size="13" font-weight="700">📝 Mutation Audit Ledger</text>
+      <text x="14" y="44" fill="#94a3b8" font-size="11">Ghi vết giao dịch • Chống sửa đổi</text>
+    </g>
+
+    <!-- Core Module 3 -->
+    <g transform="translate(556, 46)">
+      <rect width="250" height="58" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="14" y="24" fill="#f8fafc" font-size="13" font-weight="700">⚖️ Legal Policy Engine</text>
+      <text x="14" y="44" fill="#94a3b8" font-size="11">Kiểm tra TT15, TT70, TT22, TT55</text>
+    </g>
+
+    <!-- Core Module 4 -->
+    <g transform="translate(822, 46)">
+      <rect width="234" height="58" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="14" y="24" fill="#f8fafc" font-size="13" font-weight="700">🔒 Security &amp; ABAC</text>
+      <text x="14" y="44" fill="#94a3b8" font-size="11">Phân quyền vai trò • NĐ 13/2023</text>
+    </g>
+  </g>
+
+  <!-- Connectors from Layer 2 to Layer 3 -->
+  <path d="M 350 425 V 470" stroke="#10b981" stroke-width="2" marker-end="url(#arrowGreen)" />
+  <path d="M 850 425 V 470" stroke="#818cf8" stroke-width="2" marker-end="url(#arrow)" />
+
+  <!-- LAYER 3: CLOUD SYNC & AI COPILOT TIER -->
+  <g transform="translate(60, 475)">
+    <!-- Sub-Block 3A: Cloud Sync -->
+    <g transform="translate(0, 0)">
+      <rect width="660" height="135" rx="12" fill="url(#boxGrad1)" stroke="#10b981" stroke-width="1.2" filter="url(#cardShadow)" />
+      <text x="24" y="30" fill="#34d399" font-size="12" font-weight="700" letter-spacing="1">ĐỒNG BỘ ĐÁM MÂY &amp; CSDL TRUNG TÂM (CLOUD SYNC INFRASTRUCTURE)</text>
+
+      <g transform="translate(24, 46)">
+        <rect width="295" height="70" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1" />
+        <text x="14" y="25" fill="#f8fafc" font-size="13" font-weight="700">⚡ Supabase Cloud REST</text>
+        <text x="14" y="44" fill="#94a3b8" font-size="11">PostgreSQL Database • Row Level Security</text>
+        <text x="14" y="58" fill="#34d399" font-size="10">Đồng bộ tự động &amp; Vector Clock Conflict</text>
+      </g>
+
+      <g transform="translate(335, 46)">
+        <rect width="300" height="70" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1" />
+        <text x="14" y="25" fill="#f8fafc" font-size="13" font-weight="700">🖥️ Node.js School Server API</text>
+        <text x="14" y="44" fill="#94a3b8" font-size="11">Express REST API :5000 • Local Network</text>
+        <text x="14" y="58" fill="#38bdf8" font-size="10">Hỗ trợ kết nối máy chủ qua SSH / LAN</text>
+      </g>
+    </g>
+
+    <!-- Sub-Block 3B: AI Copilot -->
+    <g transform="translate(680, 0)">
+      <rect width="400" height="135" rx="12" fill="url(#boxGrad1)" stroke="#a855f7" stroke-width="1.2" filter="url(#cardShadow)" />
+      <text x="24" y="30" fill="#c084fc" font-size="12" font-weight="700" letter-spacing="1">TRỢ LÝ AI SƯ PHẠM (AI COPILOT TIER)</text>
+
+      <g transform="translate(24, 46)">
+        <rect width="352" height="70" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1" />
+        <text x="14" y="25" fill="#f8fafc" font-size="13" font-weight="700">🤖 Google Gemini / OpenAI</text>
+        <text x="14" y="44" fill="#94a3b8" font-size="11">Gợi ý nhận xét học bạ theo TT22 &amp; TT27</text>
+        <text x="14" y="58" fill="#c084fc" font-size="10">Tư vấn tâm lý học đường • Kỷ luật tích cực TT18</text>
+      </g>
+    </g>
+  </g>
+</svg>

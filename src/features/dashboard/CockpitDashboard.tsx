@@ -40,14 +40,17 @@ export const CockpitDashboard: React.FC<CockpitDashboardProps> = ({
   const earlyWarnings = localStore.getEarlyWarnings().filter(w => w.status === 'NEW');
   const homeroomBook = localStore.getHomeroomBook();
 
-  // Compute stats
-  const presentCount = attendance.filter(a => a.status === 'PRESENT').length;
-  const lateCount = attendance.filter(a => a.status === 'LATE').length;
-  const absentCount = attendance.filter(a => a.status.includes('ABSENT')).length;
+  // Compute stats for the latest attendance date
+  const latestDate = attendance[0]?.date || new Date().toISOString().split('T')[0];
+  const todayAttendance = attendance.filter(a => a.date === latestDate);
+  const presentCount = todayAttendance.filter(a => a.status === 'PRESENT').length;
+  const lateCount = todayAttendance.filter(a => a.status === 'LATE').length;
+  const absentCount = todayAttendance.filter(a => a.status.includes('ABSENT')).length;
 
-  const totalIncome = transactions.filter(t => t.type === 'INCOME').reduce((s, t) => s + t.amount, 0);
-  const totalExpense = transactions.filter(t => t.type === 'EXPENSE').reduce((s, t) => s + t.amount, 0);
-  const fundBalance = totalIncome - totalExpense;
+  const totalIncome = transactions.filter(t => t.type === 'INCOME' && t.status === 'POSTED').reduce((s, t) => s + t.amount, 0);
+  const totalExpense = transactions.filter(t => t.type === 'EXPENSE' && t.status === 'POSTED').reduce((s, t) => s + t.amount, 0);
+  const totalAdjustments = transactions.filter(t => (t.type === 'ADJUSTMENT' || t.type === 'REVERSAL') && t.status === 'POSTED').reduce((s, t) => s + t.amount, 0);
+  const fundBalance = totalIncome - totalExpense + totalAdjustments;
 
   return (
     <div className="space-y-6 animate-in fade-in duration-200">
@@ -64,7 +67,7 @@ export const CockpitDashboard: React.FC<CockpitDashboardProps> = ({
               Bàn làm việc Chủ nhiệm — Lớp 8A1
             </h1>
             <p className="text-brand-100 text-sm max-w-xl">
-              Chào {session.fullName}! Hôm nay là ngày 26/08/2026. Lớp học có {students.length} học sinh. Sẵn sàng cho ngày làm việc mới!
+              Chào {session.fullName}! Hôm nay là ngày {formatDateVN(new Date().toISOString())}. Lớp học có {students.length} học sinh. Sẵn sàng cho ngày làm việc mới!
             </p>
           </div>
 

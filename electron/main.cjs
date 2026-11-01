@@ -22,7 +22,19 @@ function createWindow() {
     }
   });
 
-  // Xử lý sự kiện đóng app từ React
+  // Window control IPC handlers
+  ipcMain.on('minimize-app', () => {
+    mainWindow?.minimize();
+  });
+
+  ipcMain.on('maximize-app', () => {
+    if (mainWindow?.isMaximized()) {
+      mainWindow.unmaximize();
+    } else {
+      mainWindow?.maximize();
+    }
+  });
+
   ipcMain.on('close-app', () => {
     app.quit();
   });

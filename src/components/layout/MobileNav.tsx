@@ -1,5 +1,5 @@
 import React from 'react';
-import { LayoutDashboard, Users, Grid, Wallet, Menu } from 'lucide-react';
+import { LayoutDashboard, Users, Grid, CalendarCheck, Menu } from 'lucide-react';
 import clsx from 'clsx';
 
 interface MobileNavProps {
@@ -17,7 +17,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({
     { id: 'dashboard', label: 'Bàn làm việc', icon: <LayoutDashboard className="w-5 h-5" /> },
     { id: 'students', label: 'Học sinh', icon: <Users className="w-5 h-5" /> },
     { id: 'seating', label: 'Sơ đồ lớp', icon: <Grid className="w-5 h-5" /> },
-    { id: 'attendance', label: 'Chuyên cần', icon: <Wallet className="w-5 h-5" /> },
+    { id: 'attendance', label: 'Chuyên cần', icon: <CalendarCheck className="w-5 h-5" /> },
   ];
 
   return (

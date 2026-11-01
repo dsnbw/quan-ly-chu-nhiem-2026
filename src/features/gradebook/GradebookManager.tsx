@@ -57,30 +57,45 @@ export const GradebookManager: React.FC = () => {
   });
 
   const handleScoreChange = (studentId: string, field: 'tx1' | 'tx2' | 'tx3' | 'gk' | 'ck', value: string) => {
-    const numVal = value === '' ? undefined : Math.min(10, Math.max(0, Number(value)));
+    let numVal: number | undefined = undefined;
+    if (value !== '') {
+      const parsed = Number(value);
+      if (!isNaN(parsed)) {
+        numVal = Math.min(10, Math.max(0, parsed));
+      }
+    }
 
+    let modifiedGrade: GradeEntry | undefined;
     const updated = rows.map(r => {
       if (r.student.id === studentId) {
         const newGrade = { ...r.grade, [field]: numVal };
         newGrade.averageScore = AssessmentRuleEngine.calculateSubjectAverage(newGrade);
+        modifiedGrade = newGrade;
         return newGrade;
       }
       return r.grade;
     });
 
-    updated.forEach(g => localStore.saveGradeEntry(g));
+    if (modifiedGrade) {
+      localStore.saveGradeEntry(modifiedGrade);
+    }
     setGrades(localStore.getGrades());
   };
 
   const handleCommentChange = (studentId: string, comment: string) => {
+    let modifiedGrade: GradeEntry | undefined;
     const updated = rows.map(r => {
       if (r.student.id === studentId) {
-        return { ...r.grade, teacherComment: comment };
+        const newGrade = { ...r.grade, teacherComment: comment };
+        modifiedGrade = newGrade;
+        return newGrade;
       }
       return r.grade;
     });
 
-    updated.forEach(g => localStore.saveGradeEntry(g));
+    if (modifiedGrade) {
+      localStore.saveGradeEntry(modifiedGrade);
+    }
     setGrades(localStore.getGrades());
   };
 

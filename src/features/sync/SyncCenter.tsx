@@ -39,6 +39,8 @@ export const SyncCenter: React.FC = () => {
   const [isDeploying, setIsDeploying] = useState(false);
   const [isTesting, setIsTesting] = useState(false);
 
+  const restoreFileInputRef = React.useRef<HTMLInputElement>(null);
+
   const handleTestConnection = async () => {
     setIsTesting(true);
     try {
@@ -48,8 +50,25 @@ export const SyncCenter: React.FC = () => {
         await client.testConnection();
         alert('✅ Kết nối Đám mây thành công!');
       } else if (syncConfig.mode === 'CONNECTED_SCHOOL') {
-        const res = await fetch(`${syncConfig.serverBaseUrl}/ping`);
-        if (!res.ok) throw new Error('Server không phản hồi đúng (HTTP ' + res.status + ')');
+        const url = syncConfig.serverBaseUrl.replace(/\/+$/, '');
+        let ok = false;
+        try {
+          const res = await fetch(`${url}/ping`);
+          if (res.ok) ok = true;
+        } catch {}
+        if (!ok) {
+          try {
+            const res2 = await fetch(`${url}/health`);
+            if (res2.ok) ok = true;
+          } catch {}
+        }
+        if (!ok) {
+          try {
+            const res3 = await fetch(`${url}/api/v1/health`);
+            if (res3.ok) ok = true;
+          } catch {}
+        }
+        if (!ok) throw new Error('Máy chủ không phản hồi tại ' + url);
         alert('✅ Kết nối Máy chủ thành công!');
       }
     } catch (error: any) {
@@ -86,11 +105,38 @@ export const SyncCenter: React.FC = () => {
     localStore.saveSyncConfig(updated);
   };
 
-  const handleSimulateSync = () => {
+  const handleExecuteSync = async () => {
     setIsSyncing(true);
+    try {
+      const fullState = localStore.exportFullBackup();
 
-    setTimeout(() => {
-      // Mark all outbox items as synced
+      if (syncConfig.mode === 'SUPABASE' || syncConfig.mode === 'FIREBASE') {
+        const { CloudSyncClient } = await import('../../core/sync/cloudClient');
+        const client = new CloudSyncClient(syncConfig.mode, syncConfig.serverBaseUrl, syncConfig.apiKey || '');
+        await client.pushState(fullState);
+      } else if (syncConfig.mode === 'CONNECTED_SCHOOL') {
+        const url = syncConfig.serverBaseUrl.replace(/\/+$/, '');
+        let pushSuccess = false;
+        try {
+          const res = await fetch(`${url}/sync`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(fullState)
+          });
+          if (res.ok) pushSuccess = true;
+        } catch {}
+
+        if (!pushSuccess) {
+          const res2 = await fetch(`${url}/api/v1/sync`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(fullState)
+          });
+          if (!res2.ok) throw new Error('Máy chủ từ chối đồng bộ (HTTP ' + res2.status + ')');
+        }
+      }
+
+      // Mark outbox cleared
       localStore.clearOutbox();
       setOutbox([]);
 
@@ -102,10 +148,43 @@ export const SyncCenter: React.FC = () => {
       setSyncConfig(updated);
       localStore.saveSyncConfig(updated);
 
-      setIsSyncing(false);
       setSyncSuccessToast(true);
-      setTimeout(() => setSyncSuccessToast(false), 3000);
-    }, 1200);
+      setTimeout(() => setSyncSuccessToast(false), 3500);
+    } catch (error: any) {
+      alert('❌ Quá trình đồng bộ thất bại: ' + (error.message || 'Lỗi kết nối'));
+    } finally {
+      setIsSyncing(false);
+    }
+  };
+
+  const handleExportBackupJson = () => {
+    const data = localStore.exportFullBackup();
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `backup_cva_2026_${new Date().toISOString().split('T')[0]}.json`;
+    a.click();
+  };
+
+  const handleImportBackupJson = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      try {
+        const text = evt.target?.result as string;
+        const parsed = JSON.parse(text);
+        if (confirm('Khôi phục dữ liệu từ file sao lưu này? Dữ liệu hiện tại sẽ được thay thế.')) {
+          localStore.importFullBackup(parsed);
+          alert('✅ Khôi phục dữ liệu thành công! Ứng dụng sẽ tải lại.');
+          window.location.reload();
+        }
+      } catch (err: any) {
+        alert('❌ Tệp sao lưu không hợp lệ: ' + err.message);
+      }
+    };
+    reader.readAsText(file);
   };
 
   const handleResolveConflict = (conflictId: string, resolution: 'RESOLVED_USE_LOCAL' | 'RESOLVED_USE_SERVER' | 'RESOLVED_MANUAL_MERGE', val?: any) => {
@@ -146,27 +225,6 @@ export const SyncCenter: React.FC = () => {
     setConflicts(updated);
   };
 
-  const handleExportBackupJson = () => {
-    const data = {
-      school: localStore.getSchoolConfig(),
-      students: localStore.getStudents(),
-      attendance: localStore.getAttendance(),
-      grades: localStore.getGrades(),
-      transactions: localStore.getFinancialTransactions(),
-      behavior: localStore.getBehaviorObservations(),
-      homeroom: localStore.getHomeroomBook(),
-      tasks: localStore.getTasks(),
-      backupTime: new Date().toISOString()
-    };
-
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `backup_cva_2026_${new Date().toISOString().split('T')[0]}.json`;
-    a.click();
-  };
-
   return (
     <div className="space-y-6 animate-in fade-in duration-150">
       {/* Header */}
@@ -182,6 +240,23 @@ export const SyncCenter: React.FC = () => {
         </div>
 
         <div className="flex flex-wrap items-center gap-2.5">
+          <input
+            type="file"
+            ref={restoreFileInputRef}
+            onChange={handleImportBackupJson}
+            accept=".json"
+            className="hidden"
+          />
+          <Button
+            variant="outline"
+            size="md"
+            icon={<Upload className="w-4 h-4 text-brand-600" />}
+            onClick={() => restoreFileInputRef.current?.click()}
+            className="text-xs sm:text-sm font-bold"
+          >
+            Khôi phục (JSON)
+          </Button>
+
           <Button
             variant="outline"
             size="md"
@@ -197,7 +272,7 @@ export const SyncCenter: React.FC = () => {
             size="md"
             isLoading={isSyncing}
             icon={<RefreshCw className="w-4 h-4" />}
-            onClick={handleSimulateSync}
+            onClick={handleExecuteSync}
             className="text-xs sm:text-sm font-bold shadow-md"
           >
             Đồng bộ Ngay với Máy chủ

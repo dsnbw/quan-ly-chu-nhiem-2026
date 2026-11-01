@@ -18,8 +18,20 @@ import { Modal } from '../../components/common/Modal';
 import { formatVND, formatDateVN } from '../../utils/formatters';
 
 export const ParentPortalView: React.FC = () => {
+  const session = localStore.getUserSession();
   const students = localStore.getStudents();
-  const child = students[0]; // Nguyễn Tuấn Anh
+  const child = (session.childStudentIds && session.childStudentIds.length > 0
+    ? students.find(s => session.childStudentIds?.includes(s.id))
+    : null) || students[0];
+
+  if (!child) {
+    return (
+      <div className="p-8 text-center bg-white rounded-2xl border border-slate-200 shadow-xs">
+        <p className="text-slate-500 font-bold">Chưa có dữ liệu học sinh trong hệ thống.</p>
+      </div>
+    );
+  }
+
   const attendance = localStore.getAttendance().filter(a => a.studentId === child.id);
   const grades = localStore.getGrades().filter(g => g.studentId === child.id);
   const fees = localStore.getStudentFees().filter(f => f.studentId === child.id);

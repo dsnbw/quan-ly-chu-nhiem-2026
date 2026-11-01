@@ -3,7 +3,7 @@ import { Modal } from './Modal';
 import { Button } from './Button';
 import { Download, RefreshCw } from 'lucide-react';
 
-const CURRENT_VERSION = '1.1.0';
+const CURRENT_VERSION = '1.1.4';
 const GITHUB_REPO = 'dsnbw/quan-ly-chu-nhiem-2026';
 
 export const Updater: React.FC = () => {

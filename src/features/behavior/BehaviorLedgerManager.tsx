@@ -176,8 +176,10 @@ export const BehaviorLedgerManager: React.FC = () => {
                         {item.improvementCount > 0 ? `-${item.improvementCount}` : '0'}
                       </span>
                     </td>
-                    <td className="p-3 text-right font-mono font-bold text-emerald-700 text-base">
-                      +{item.totalPoints}
+                    <td className={`p-3 text-right font-mono font-bold text-base ${
+                      item.totalPoints > 0 ? 'text-emerald-700' : (item.totalPoints < 0 ? 'text-rose-700' : 'text-slate-500')
+                    }`}>
+                      {item.totalPoints > 0 ? `+${item.totalPoints}` : item.totalPoints}
                     </td>
                   </tr>
                 ))}

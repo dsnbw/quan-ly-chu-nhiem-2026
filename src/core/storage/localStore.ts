@@ -324,6 +324,13 @@ class LocalRepository {
     this.setItem(STORAGE_KEYS.STUDENTS, list);
     this.notify();
   }
+  public deleteStudent(studentId: string) {
+    let list = this.getStudents();
+    list = list.filter(s => s.id !== studentId);
+    this.setItem(STORAGE_KEYS.STUDENTS, list);
+    this.recordMutation('student', studentId, 'DELETE', { id: studentId });
+    this.notify();
+  }
 
   public getContactLogs(): ContactLog[] { return this.getItem(STORAGE_KEYS.CONTACT_LOGS, initialContactLogs); }
   public addContactLog(log: ContactLog) {
@@ -334,7 +341,35 @@ class LocalRepository {
     this.notify();
   }
 
-  public getSeatingLayout(): SeatingLayout { return this.getItem(STORAGE_KEYS.SEATING, initialSeatingLayout); }
+  public getSeatingLayout(): SeatingLayout {
+    const layout = this.getItem(STORAGE_KEYS.SEATING, initialSeatingLayout);
+    if (!layout.seats || layout.seats.length === 0) {
+      const students = this.getStudents();
+      const generatedSeats: any[] = [];
+      let stIdx = 0;
+      const rows = layout.rows || 5;
+      const cols = layout.cols || 6;
+      for (let r = 1; r <= rows; r++) {
+        for (let c = 1; c <= cols; c++) {
+          const deskCol = Math.floor((c - 1) / 2) + 1;
+          const st = students[stIdx++];
+          generatedSeats.push({
+            row: r,
+            col: c,
+            deskNumber: deskCol,
+            studentId: st?.id,
+            studentName: st?.fullName,
+            gender: st?.gender,
+            groupName: `Tổ ${deskCol}`,
+            isLocked: st?.health?.needsFrontRowSeat || false
+          });
+        }
+      }
+      layout.seats = generatedSeats;
+      this.setItem(STORAGE_KEYS.SEATING, layout);
+    }
+    return layout;
+  }
   public saveSeatingLayout(layout: SeatingLayout) {
     this.setItem(STORAGE_KEYS.SEATING, layout);
     this.recordMutation('seating_layout', layout.id, 'PATCH', layout);
@@ -385,6 +420,26 @@ class LocalRepository {
         this.setItem(STORAGE_KEYS.FIN_FEES, fees);
       }
     }
+    this.notify();
+  }
+
+  public saveFinancialTransaction(tx: FinancialTransaction) {
+    const list = this.getFinancialTransactions();
+    const idx = list.findIndex(t => t.id === tx.id);
+    if (idx >= 0) {
+      list[idx] = tx;
+      this.recordMutation('financial_transaction', tx.id, 'PATCH', tx);
+    } else {
+      list.unshift(tx);
+      this.recordMutation('financial_transaction', tx.id, 'CREATE', tx);
+    }
+    this.setItem(STORAGE_KEYS.FIN_TRANSACTIONS, list);
+    this.notify();
+  }
+
+  public saveFinancialTransactions(list: FinancialTransaction[]) {
+    this.setItem(STORAGE_KEYS.FIN_TRANSACTIONS, list);
+    this.recordMutation('financial_transaction', 'batch', 'PATCH', { count: list.length });
     this.notify();
   }
 
@@ -588,6 +643,67 @@ class LocalRepository {
       teachingSubjectIds: [],
       teachingClassIds: ['class-default']
     });
+  }
+
+  public exportFullBackup(): Record<string, any> {
+    return {
+      version: '1.1.4',
+      backupTime: new Date().toISOString(),
+      school: this.getSchoolConfig(),
+      academicYears: this.getAcademicYears(),
+      classes: this.getClasses(),
+      subjects: this.getSubjects(),
+      students: this.getStudents(),
+      contactLogs: this.getContactLogs(),
+      seating: this.getSeatingLayout(),
+      behaviorTypes: this.getBehaviorTypes(),
+      behaviorObservations: this.getBehaviorObservations(),
+      financialCampaigns: this.getFinancialCampaigns(),
+      financialTransactions: this.getFinancialTransactions(),
+      studentFees: this.getStudentFees(),
+      attendance: this.getAttendance(),
+      leaveRequests: this.getLeaveRequests(),
+      grades: this.getGrades(),
+      homeroomBook: this.getHomeroomBook(),
+      classMeetings: this.getClassMeetings(),
+      earlyWarnings: this.getEarlyWarnings(),
+      counseling: this.getCounselingCases(),
+      incidents: this.getIncidentRecords(),
+      rewards: this.getRewardProposals(),
+      tasks: this.getTasks(),
+      calendar: this.getCalendarEvents(),
+      retention: this.getRetentionPolicies(),
+      syncConfig: this.getSyncConfig()
+    };
+  }
+
+  public importFullBackup(data: Record<string, any>) {
+    if (!data || typeof data !== 'object') throw new Error('Dữ liệu sao lưu không hợp lệ');
+    if (data.school) this.setItem(STORAGE_KEYS.SCHOOL, data.school);
+    if (data.academicYears) this.setItem(STORAGE_KEYS.ACADEMIC_YEARS, data.academicYears);
+    if (data.classes) this.setItem(STORAGE_KEYS.CLASSES, data.classes);
+    if (data.subjects) this.setItem(STORAGE_KEYS.SUBJECTS, data.subjects);
+    if (data.students) this.setItem(STORAGE_KEYS.STUDENTS, data.students);
+    if (data.contactLogs) this.setItem(STORAGE_KEYS.CONTACT_LOGS, data.contactLogs);
+    if (data.seating) this.setItem(STORAGE_KEYS.SEATING, data.seating);
+    if (data.behaviorTypes) this.setItem(STORAGE_KEYS.BEHAVIOR_TYPES, data.behaviorTypes);
+    if (data.behaviorObservations) this.setItem(STORAGE_KEYS.BEHAVIOR_OBS, data.behaviorObservations);
+    if (data.financialCampaigns) this.setItem(STORAGE_KEYS.FIN_CAMPAIGNS, data.financialCampaigns);
+    if (data.financialTransactions) this.setItem(STORAGE_KEYS.FIN_TRANSACTIONS, data.financialTransactions);
+    if (data.studentFees) this.setItem(STORAGE_KEYS.FIN_FEES, data.studentFees);
+    if (data.attendance) this.setItem(STORAGE_KEYS.ATTENDANCE, data.attendance);
+    if (data.leaveRequests) this.setItem(STORAGE_KEYS.LEAVE_REQUESTS, data.leaveRequests);
+    if (data.grades) this.setItem(STORAGE_KEYS.GRADES, data.grades);
+    if (data.homeroomBook) this.setItem(STORAGE_KEYS.HOMEROOM_BOOK, data.homeroomBook);
+    if (data.classMeetings) this.setItem(STORAGE_KEYS.CLASS_MEETINGS, data.classMeetings);
+    if (data.earlyWarnings) this.setItem(STORAGE_KEYS.EARLY_WARNINGS, data.earlyWarnings);
+    if (data.counseling) this.setItem(STORAGE_KEYS.COUNSELING, data.counseling);
+    if (data.incidents) this.setItem(STORAGE_KEYS.INCIDENTS, data.incidents);
+    if (data.rewards) this.setItem(STORAGE_KEYS.REWARDS, data.rewards);
+    if (data.tasks) this.setItem(STORAGE_KEYS.TASKS, data.tasks);
+    if (data.calendar) this.setItem(STORAGE_KEYS.CALENDAR, data.calendar);
+    if (data.retention) this.setItem(STORAGE_KEYS.RETENTION, data.retention);
+    this.notify();
   }
 
   public switchUserRole(newRole: RoleType) {

@@ -35,6 +35,76 @@ export const StudentRegistry: React.FC = () => {
   const [generateStudentCode, setGenerateStudentCode] = useState(true);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // Manual Add Student State
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [newStudentName, setNewStudentName] = useState('');
+  const [newStudentCode, setNewStudentCode] = useState('');
+  const [newStudentDob, setNewStudentDob] = useState('2012-05-15');
+  const [newStudentGender, setNewStudentGender] = useState<'MALE' | 'FEMALE'>('MALE');
+  const [newStudentGroup, setNewStudentGroup] = useState('Tổ 1');
+  const [newStudentAddress, setNewStudentAddress] = useState('Hà Nội');
+  const [newGuardianName, setNewGuardianName] = useState('');
+  const [newGuardianPhone, setNewGuardianPhone] = useState('');
+  const [newNeedsVision, setNewNeedsVision] = useState(false);
+
+  const handleCreateStudent = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newStudentName.trim()) return;
+
+    let code = newStudentCode.trim();
+    if (!code) {
+      code = `HS08${String(students.length + 1).padStart(3, '0')}`;
+    }
+
+    const sId = `student-${Date.now()}`;
+    const newStudent: Student = {
+      id: sId,
+      studentCode: code,
+      fullName: newStudentName.trim(),
+      dateOfBirth: newStudentDob,
+      gender: newStudentGender,
+      ethnicity: 'Kinh',
+      birthPlace: 'Hà Nội',
+      currentAddress: newStudentAddress.trim() || 'Hà Nội',
+      status: 'ACTIVE',
+      classId: 'class-8a1',
+      className: '8A1',
+      enrollmentDate: new Date().toISOString().split('T')[0],
+      seatRow: 1,
+      seatCol: 1,
+      groupName: newStudentGroup,
+      health: {
+        emergencyContactName: newGuardianName.trim() || 'Phụ huynh',
+        emergencyContactPhone: newGuardianPhone.trim() || '',
+        needsFrontRowSeat: newNeedsVision,
+        needsNearBoardSeat: newNeedsVision,
+        visionImpairment: newNeedsVision
+      },
+      guardians: [
+        {
+          id: `g-${Date.now()}`,
+          studentId: sId,
+          fullName: newGuardianName.trim() || 'Phụ huynh học sinh',
+          relationship: 'FATHER',
+          phone: newGuardianPhone.trim() || '',
+          address: newStudentAddress.trim() || 'Hà Nội',
+          isPrimaryContact: true,
+          isVerified: true,
+          hasPortalAccess: true
+        }
+      ]
+    };
+
+    localStore.saveStudent(newStudent);
+    setStudents(localStore.getStudents());
+    setIsAddModalOpen(false);
+    setNewStudentName('');
+    setNewStudentCode('');
+    setNewGuardianName('');
+    setNewGuardianPhone('');
+    setNewNeedsVision(false);
+  };
+
   const handleSearch = (term: string) => {
     setSearchTerm(term);
   };
@@ -138,6 +208,16 @@ export const StudentRegistry: React.FC = () => {
             accept=".xlsx, .xls"
             className="hidden"
           />
+          <Button
+            variant="primary"
+            size="md"
+            icon={<Plus className="w-4 h-4" />}
+            onClick={() => setIsAddModalOpen(true)}
+            className="text-xs sm:text-sm font-bold bg-brand-600 hover:bg-brand-700"
+          >
+            Thêm học sinh
+          </Button>
+
           <Button
             variant="outline"
             size="md"
@@ -353,6 +433,133 @@ export const StudentRegistry: React.FC = () => {
             </table>
           </div>
         </div>
+      </Modal>
+      {/* Manual Add Student Modal */}
+      <Modal
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        title={
+          <div className="flex items-center gap-2">
+            <Plus className="w-5 h-5 text-brand-600" />
+            <span>Thêm Học Sinh Mới vào Lớp 8A1</span>
+          </div>
+        }
+        maxWidth="2xl"
+      >
+        <form onSubmit={handleCreateStudent} className="space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Họ và tên học sinh *</label>
+              <input
+                type="text"
+                required
+                value={newStudentName}
+                onChange={e => setNewStudentName(e.target.value)}
+                placeholder="VD: Hoàng Minh Châu"
+                className="w-full px-3 py-2 text-xs sm:text-sm border border-slate-200 rounded-xl outline-none focus:border-brand-500 font-bold"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Mã học sinh (Để trống tự sinh)</label>
+              <input
+                type="text"
+                value={newStudentCode}
+                onChange={e => setNewStudentCode(e.target.value)}
+                placeholder="VD: HS08031"
+                className="w-full px-3 py-2 text-xs sm:text-sm font-mono border border-slate-200 rounded-xl outline-none focus:border-brand-500"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Ngày sinh</label>
+              <input
+                type="date"
+                value={newStudentDob}
+                onChange={e => setNewStudentDob(e.target.value)}
+                className="w-full px-3 py-2 text-xs sm:text-sm border border-slate-200 rounded-xl outline-none focus:border-brand-500"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Giới tính</label>
+              <select
+                value={newStudentGender}
+                onChange={e => setNewStudentGender(e.target.value as any)}
+                className="w-full px-3 py-2 text-xs sm:text-sm border border-slate-200 rounded-xl outline-none focus:border-brand-500"
+              >
+                <option value="MALE">Nam</option>
+                <option value="FEMALE">Nữ</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Phân tổ</label>
+              <select
+                value={newStudentGroup}
+                onChange={e => setNewStudentGroup(e.target.value)}
+                className="w-full px-3 py-2 text-xs sm:text-sm border border-slate-200 rounded-xl outline-none focus:border-brand-500"
+              >
+                <option value="Tổ 1">Tổ 1</option>
+                <option value="Tổ 2">Tổ 2</option>
+                <option value="Tổ 3">Tổ 3</option>
+                <option value="Tổ 4">Tổ 4</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Họ tên Phụ huynh</label>
+              <input
+                type="text"
+                value={newGuardianName}
+                onChange={e => setNewGuardianName(e.target.value)}
+                placeholder="VD: Hoàng Văn Minh"
+                className="w-full px-3 py-2 text-xs sm:text-sm border border-slate-200 rounded-xl outline-none focus:border-brand-500"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Số điện thoại Phụ huynh</label>
+              <input
+                type="text"
+                value={newGuardianPhone}
+                onChange={e => setNewGuardianPhone(e.target.value)}
+                placeholder="VD: 0912 888 999"
+                className="w-full px-3 py-2 text-xs sm:text-sm font-mono border border-slate-200 rounded-xl outline-none focus:border-brand-500"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold text-slate-700 mb-1">Địa chỉ cư trú</label>
+            <input
+              type="text"
+              value={newStudentAddress}
+              onChange={e => setNewStudentAddress(e.target.value)}
+              placeholder="VD: Phố Trích Sài, Tây Hồ, Hà Nội"
+              className="w-full px-3 py-2 text-xs sm:text-sm border border-slate-200 rounded-xl outline-none focus:border-brand-500"
+            />
+          </div>
+
+          <label className="flex items-center gap-2 text-xs font-bold text-slate-700 cursor-pointer pt-1">
+            <input
+              type="checkbox"
+              checked={newNeedsVision}
+              onChange={e => setNewNeedsVision(e.target.checked)}
+              className="rounded border-slate-300 text-brand-600 focus:ring-brand-500 w-4 h-4"
+            />
+            <span>Học sinh có tật khúc xạ (Cận thị - cần ưu tiên bàn đầu gần bảng)</span>
+          </label>
+
+          <div className="pt-3 flex justify-end gap-2 border-t border-slate-100">
+            <Button variant="outline" size="sm" type="button" onClick={() => setIsAddModalOpen(false)}>
+              Hủy
+            </Button>
+            <Button variant="primary" size="sm" type="submit" className="bg-brand-600 hover:bg-brand-700">
+              Lưu Học Sinh
+            </Button>
+          </div>
+        </form>
       </Modal>
     </div>
   );

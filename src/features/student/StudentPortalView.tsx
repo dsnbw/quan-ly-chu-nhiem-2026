@@ -12,8 +12,18 @@ import { localStore } from '../../core/storage/localStore';
 import { Badge } from '../../components/common/Badge';
 
 export const StudentPortalView: React.FC = () => {
+  const session = localStore.getUserSession();
   const students = localStore.getStudents();
-  const me = students[0]; // Nguyễn Tuấn Anh
+  const me = (session.studentId ? students.find(s => s.id === session.studentId) : null) || students[0];
+
+  if (!me) {
+    return (
+      <div className="p-8 text-center bg-white rounded-2xl border border-slate-200 shadow-xs">
+        <p className="text-slate-500 font-bold">Chưa có thông tin học sinh.</p>
+      </div>
+    );
+  }
+
   const grades = localStore.getGrades().filter(g => g.studentId === me.id);
   const behaviorObs = localStore.getBehaviorObservations().filter(b => b.studentId === me.id);
   const totalPoints = behaviorObs.reduce((s, o) => s + o.points, 0);

@@ -22,6 +22,10 @@ const db = new sqlite3.Database(dbPath, (err) => {
   }
 });
 
+app.get(['/ping', '/api/v1/ping'], (req, res) => {
+  res.send('pong');
+});
+
 app.get('/api/v1/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });

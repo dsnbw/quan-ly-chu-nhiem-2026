@@ -58,7 +58,8 @@ export const ClassFinanceManager: React.FC = () => {
   // Compute calculated balance (FIN-004: OpeningBalance + Income - Expense + Adjustments)
   const totalIncome = transactions.filter(t => t.type === 'INCOME' && t.status === 'POSTED').reduce((s, t) => s + t.amount, 0);
   const totalExpense = transactions.filter(t => t.type === 'EXPENSE' && t.status === 'POSTED').reduce((s, t) => s + t.amount, 0);
-  const balance = totalIncome - totalExpense;
+  const totalAdjustments = transactions.filter(t => (t.type === 'ADJUSTMENT' || t.type === 'REVERSAL') && t.status === 'POSTED').reduce((s, t) => s + t.amount, 0);
+  const balance = totalIncome - totalExpense + totalAdjustments;
 
   const handleRecordExpense = (e: React.FormEvent) => {
     e.preventDefault();
@@ -191,8 +192,7 @@ export const ClassFinanceManager: React.FC = () => {
     });
 
     if (updatedTxs) {
-      // @ts-ignore
-      localStore.setItem('cva_fin_transactions', list);
+      localStore.saveFinancialTransactions(list);
       setTransactions(list);
     }
 
@@ -221,8 +221,24 @@ export const ClassFinanceManager: React.FC = () => {
         notes: 'Điều chỉnh sai số giao dịch'
       };
 
-      tx.status = 'REVERSED';
+      // Update original transaction status to REVERSED and save it
+      const updatedOriginal = { ...tx, status: 'REVERSED' as const };
+      localStore.saveFinancialTransaction(updatedOriginal);
       localStore.addFinancialTransaction(reversalTx);
+
+      // If reversing student income, roll back student fee
+      if (tx.campaignId && tx.studentId && tx.type === 'INCOME') {
+        const fees = localStore.getStudentFees();
+        const fee = fees.find(f => f.campaignId === tx.campaignId && f.studentId === tx.studentId);
+        if (fee) {
+          fee.paidAmount = Math.max(0, fee.paidAmount - tx.amount);
+          fee.remainingAmount = Math.max(0, fee.requiredAmount - fee.paidAmount);
+          fee.status = fee.paidAmount === 0 ? 'UNPAID' : (fee.remainingAmount === 0 ? 'PAID' : 'PARTIAL');
+          localStore.saveStudentFees(fees);
+          setFees(localStore.getStudentFees());
+        }
+      }
+
       setTransactions(localStore.getFinancialTransactions());
     }
   };

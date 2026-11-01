@@ -113,17 +113,18 @@ export const SeatingManager: React.FC = () => {
   };
 
   const handleStrategyBalanceBand = () => {
-    // Put front row students first, then distribute academic bands evenly
-    const frontRowStudents = students.filter(s => s.health?.needsFrontRowSeat);
-    const otherStudents = students.filter(s => !s.health?.needsFrontRowSeat);
+    const lockedStudentIds = new Set(layout.seats.filter(s => s.isLocked && s.studentId).map(s => s.studentId!));
+    const availableStudents = students.filter(s => !lockedStudentIds.has(s.id));
 
-    // Sort by gender & academic band
+    const frontRowStudents = availableStudents.filter(s => s.health?.needsFrontRowSeat);
+    const otherStudents = availableStudents.filter(s => !s.health?.needsFrontRowSeat);
     otherStudents.sort((a, b) => (a.gender === 'FEMALE' ? -1 : 1));
 
     const combined = [...frontRowStudents, ...otherStudents];
 
     let ptr = 0;
-    const newSeats = layout.seats.map((s, idx) => {
+    const newSeats = layout.seats.map(s => {
+      if (s.isLocked) return s;
       const st = combined[ptr++];
       return {
         ...s,

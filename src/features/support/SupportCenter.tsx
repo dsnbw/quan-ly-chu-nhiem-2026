@@ -39,17 +39,23 @@ export const SupportCenter: React.FC = () => {
   const [rewDesc, setRewDesc] = useState('');
   const [rewLevel, setRewLevel] = useState<'CLASS_COMMENDATION' | 'SCHOOL_COMMENDATION' | 'DISTRICT_ABOVE'>('SCHOOL_COMMENDATION');
 
-  const handleDismissWarning = (warnId: string) => {
-    const reason = prompt('Nhập lý do đóng cảnh báo:');
-    if (!reason) return;
+  // Dismiss Warning State
+  const [dismissWarnId, setDismissWarnId] = useState<string | null>(null);
+  const [dismissReasonText, setDismissReasonText] = useState('');
 
-    const warn = earlyWarnings.find(w => w.id === warnId);
+  const handleConfirmDismissWarning = () => {
+    if (!dismissWarnId) return;
+    const reason = dismissReasonText.trim() || 'Đã tiếp nhận và xử lý';
+
+    const warn = earlyWarnings.find(w => w.id === dismissWarnId);
     if (warn) {
       warn.status = 'DISMISSED';
       warn.dismissReason = reason;
       localStore.saveEarlyWarning(warn);
       setEarlyWarnings([...localStore.getEarlyWarnings()]);
     }
+    setDismissWarnId(null);
+    setDismissReasonText('');
   };
 
   const handleSaveCounseling = (e: React.FormEvent) => {
@@ -204,7 +210,10 @@ export const SupportCenter: React.FC = () => {
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={() => handleDismissWarning(w.id)}
+                    onClick={() => {
+                      setDismissWarnId(w.id);
+                      setDismissReasonText('');
+                    }}
                     className="text-xs"
                   >
                     Đóng cảnh báo
@@ -406,6 +415,41 @@ export const SupportCenter: React.FC = () => {
             </Button>
           </div>
         </form>
+      </Modal>
+      {/* Dismiss Warning Confirmation Modal */}
+      <Modal
+        isOpen={!!dismissWarnId}
+        onClose={() => setDismissWarnId(null)}
+        title={
+          <div className="flex items-center gap-2">
+            <CheckCircle2 className="w-5 h-5 text-amber-600" />
+            <span>Xác nhận Đóng Cảnh Báo Sớm</span>
+          </div>
+        }
+      >
+        <div className="space-y-4">
+          <p className="text-xs sm:text-sm text-slate-600">
+            Vui lòng nhập lý do hoặc biện pháp xử lý trước khi đóng cảnh báo này để lưu vào nhật ký theo dõi (audit trail):
+          </p>
+          <div>
+            <label className="block text-xs font-bold text-slate-700 mb-1">Lý do đóng / Kết quả xử lý *</label>
+            <input
+              type="text"
+              value={dismissReasonText}
+              onChange={e => setDismissReasonText(e.target.value)}
+              placeholder="VD: Đã liên hệ phụ huynh, gia đình xác nhận con ốm sốt..."
+              className="w-full px-3 py-2 text-xs sm:text-sm border border-slate-200 rounded-xl outline-none focus:border-brand-500"
+            />
+          </div>
+          <div className="flex justify-end gap-2 pt-2 border-t border-slate-100">
+            <Button variant="outline" size="sm" onClick={() => setDismissWarnId(null)}>
+              Hủy
+            </Button>
+            <Button variant="primary" size="sm" onClick={handleConfirmDismissWarning} className="bg-amber-600 hover:bg-amber-700">
+              Xác nhận Đóng
+            </Button>
+          </div>
+        </div>
       </Modal>
     </div>
   );

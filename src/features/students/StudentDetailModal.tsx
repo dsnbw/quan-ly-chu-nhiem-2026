@@ -13,7 +13,9 @@ import {
   FileText,
   AlertCircle,
   CheckCircle2,
-  Smile
+  Smile,
+  CalendarCheck,
+  Trash2
 } from 'lucide-react';
 import { Student, ContactLog, GradeEntry, BehaviorObservation, AttendanceRecord } from '../../types';
 import { Modal } from '../../components/common/Modal';
@@ -67,6 +69,19 @@ export const StudentDetailModal: React.FC<StudentDetailModalProps> = ({
     };
     localStore.saveStudent(updated);
     setCurrentStudent(updated);
+  };
+
+  const handleStatusChange = (newStatus: Student['status']) => {
+    const updated = { ...currentStudent, status: newStatus };
+    localStore.saveStudent(updated);
+    setCurrentStudent(updated);
+  };
+
+  const handleDeleteStudent = () => {
+    if (confirm(`Bạn có chắc chắn muốn xóa học sinh "${currentStudent.fullName}" (${currentStudent.studentCode}) khỏi danh sách lớp không?`)) {
+      localStore.deleteStudent(currentStudent.id);
+      onClose();
+    }
   };
 
   const handleAddContactLog = (e: React.FormEvent) => {
@@ -171,7 +186,16 @@ export const StudentDetailModal: React.FC<StudentDetailModalProps> = ({
                 </div>
                 <div>
                   <p className="text-slate-400">Trạng thái học sinh:</p>
-                  <Badge variant="success" size="sm">Đang học (Active)</Badge>
+                  <select
+                    value={currentStudent.status}
+                    onChange={e => handleStatusChange(e.target.value as any)}
+                    className="mt-0.5 text-xs font-bold px-2 py-1 bg-white border border-slate-200 rounded-lg outline-none focus:border-brand-500"
+                  >
+                    <option value="ACTIVE">Đang học (Active)</option>
+                    <option value="TRANSFERRED">Chuyển trường</option>
+                    <option value="TEMPORARILY_INACTIVE">Tạm dừng học</option>
+                    <option value="WITHDRAWN">Thôi học</option>
+                  </select>
                 </div>
               </div>
             </div>
@@ -211,6 +235,18 @@ export const StudentDetailModal: React.FC<StudentDetailModalProps> = ({
             {currentStudent.health.needsFrontRowSeat && (
               <Badge variant="warning" size="sm">Yêu cầu bàn đầu (Cận thị)</Badge>
             )}
+          </div>
+
+          <div className="pt-2 flex justify-end">
+            <Button
+              variant="outline"
+              size="sm"
+              icon={<Trash2 className="w-3.5 h-3.5" />}
+              onClick={handleDeleteStudent}
+              className="text-rose-600 border-rose-200 hover:bg-rose-50 text-xs"
+            >
+              Xóa học sinh khỏi lớp
+            </Button>
           </div>
         </div>
       )}
@@ -381,6 +417,113 @@ export const StudentDetailModal: React.FC<StudentDetailModalProps> = ({
               </div>
             ))}
           </div>
+        </div>
+      )}
+
+      {/* Tab: Attendance & Leaves */}
+      {activeTab === 'attendance' && (
+        <div className="space-y-4 animate-in fade-in duration-150">
+          {/* KPI Stats */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+            <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-center">
+              <span className="text-[11px] font-bold text-emerald-800 block">Có mặt</span>
+              <span className="text-lg font-extrabold text-emerald-700">
+                {attendance.filter(a => a.status === 'PRESENT').length}
+              </span>
+            </div>
+            <div className="p-3 rounded-xl bg-amber-50 border border-amber-200 text-center">
+              <span className="text-[11px] font-bold text-amber-800 block">Vắng có phép</span>
+              <span className="text-lg font-extrabold text-amber-700">
+                {attendance.filter(a => a.status === 'ABSENT_EXCUSED').length}
+              </span>
+            </div>
+            <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-center">
+              <span className="text-[11px] font-bold text-rose-800 block">Vắng không phép</span>
+              <span className="text-lg font-extrabold text-rose-700">
+                {attendance.filter(a => a.status === 'ABSENT_UNEXCUSED').length}
+              </span>
+            </div>
+            <div className="p-3 rounded-xl bg-orange-50 border border-orange-200 text-center">
+              <span className="text-[11px] font-bold text-orange-800 block">Đi muộn</span>
+              <span className="text-lg font-extrabold text-orange-700">
+                {attendance.filter(a => a.status === 'LATE').length}
+              </span>
+            </div>
+          </div>
+
+          {/* Attendance History Table */}
+          <div className="border border-slate-200 rounded-xl overflow-hidden">
+            <div className="bg-slate-100 p-2.5 font-bold text-xs text-slate-700 border-b border-slate-200 flex items-center justify-between">
+              <span>Lịch sử Điểm danh ({attendance.length} bản ghi)</span>
+              <span className="text-slate-400 font-normal">Học kỳ 1</span>
+            </div>
+            {attendance.length === 0 ? (
+              <p className="text-xs text-slate-400 italic p-4 text-center">Chưa có bản ghi điểm danh nào cho học sinh này.</p>
+            ) : (
+              <div className="max-h-60 overflow-y-auto">
+                <table className="w-full text-xs text-left">
+                  <thead className="bg-slate-50 text-slate-600 font-bold border-b border-slate-200">
+                    <tr>
+                      <th className="p-2">Ngày</th>
+                      <th className="p-2">Buổi / Tiết</th>
+                      <th className="p-2">Trạng thái</th>
+                      <th className="p-2">Lý do / Ghi chú</th>
+                      <th className="p-2">Người ghi</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {attendance.map(a => (
+                      <tr key={a.id} className="hover:bg-slate-50">
+                        <td className="p-2 font-bold text-slate-800">{formatDateVN(a.date)}</td>
+                        <td className="p-2 text-slate-600">{a.session === 'ALL_DAY' ? 'Cả ngày' : (a.session === 'MORNING' ? 'Buổi sáng' : 'Buổi chiều')}</td>
+                        <td className="p-2">
+                          <Badge
+                            variant={
+                              a.status === 'PRESENT' ? 'success' :
+                              a.status === 'ABSENT_EXCUSED' ? 'warning' :
+                              a.status === 'LATE' ? 'warning' : 'danger'
+                            }
+                            size="sm"
+                          >
+                            {a.status === 'PRESENT' ? 'Có mặt' :
+                             a.status === 'ABSENT_EXCUSED' ? 'Vắng có phép' :
+                             a.status === 'ABSENT_UNEXCUSED' ? 'Vắng không phép' :
+                             a.status === 'LATE' ? 'Đi muộn' : a.status}
+                          </Badge>
+                        </td>
+                        <td className="p-2 text-slate-600 italic">{a.reason || '-'}</td>
+                        <td className="p-2 text-slate-500 text-[11px]">{a.recordedByTeacherName || 'GVCN'}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+
+          {/* Leave Requests of this student */}
+          {(() => {
+            const leaves = localStore.getLeaveRequests().filter(r => r.studentId === currentStudent.id);
+            if (leaves.length === 0) return null;
+            return (
+              <div className="space-y-2">
+                <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider">Đơn xin nghỉ học đã gửi ({leaves.length})</h4>
+                <div className="space-y-1.5">
+                  {leaves.map(req => (
+                    <div key={req.id} className="p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs flex items-center justify-between">
+                      <div>
+                        <span className="font-bold text-slate-800">Từ {formatDateVN(req.fromDate)} đến {formatDateVN(req.toDate)} ({req.consecutiveDays} ngày)</span>
+                        <p className="text-[11px] text-slate-500">Lý do: {req.reason}</p>
+                      </div>
+                      <Badge variant={req.status === 'HOMEROOM_APPROVED' ? 'success' : (req.status === 'REJECTED' ? 'danger' : 'warning')} size="sm">
+                        {req.status === 'HOMEROOM_APPROVED' ? 'Đã duyệt' : (req.status === 'REJECTED' ? 'Từ chối' : 'Chờ duyệt')}
+                      </Badge>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
         </div>
       )}
 

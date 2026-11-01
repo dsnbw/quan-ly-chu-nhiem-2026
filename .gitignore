@@ -1,4 +1,4 @@
-﻿node_modules/
+node_modules/
 dist/
 dist_electron/
 .env
@@ -7,6 +7,9 @@ build_outputs/
 release_windows/
 release_windows_standalone/
 *.exe
+*.apk
 auto-release.ps1
 supabase.txt
+setup_antigravity_auto_permission.*
+*.rar
 

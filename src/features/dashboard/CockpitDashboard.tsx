@@ -99,7 +99,7 @@ export const CockpitDashboard: React.FC<CockpitDashboardProps> = ({
       {/* KPI Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
         <StatCard
-          title="Sĩ số lớp 8A1"
+          title={`Sĩ số ${currentClass.name}`}
           value={`${students.length} / ${school.maxClassSize || 35}`}
           subtitle="100% hồ sơ đã hoàn thiện"
           variant="blue"
@@ -266,7 +266,7 @@ export const CockpitDashboard: React.FC<CockpitDashboardProps> = ({
                 Học sinh cần quan tâm & Liên lạc nhanh Phụ huynh
               </h2>
               <Button variant="ghost" size="sm" onClick={() => onNavigate('students')} className="text-xs text-brand-600 font-bold">
-                Xem tất cả 30 em <ChevronRight className="w-4 h-4" />
+                Xem tất cả {students.length} em <ChevronRight className="w-4 h-4" />
               </Button>
             </div>
 
@@ -305,7 +305,7 @@ export const CockpitDashboard: React.FC<CockpitDashboardProps> = ({
           {/* Homeroom Book Progress Status */}
           <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs space-y-4">
             <h3 className="font-bold text-slate-800 text-sm flex items-center justify-between">
-              <span>Tiến độ Sổ Chủ nhiệm 8A1</span>
+              <span>Tiến độ Sổ Chủ nhiệm {currentClass.name}</span>
               <Badge variant="success" size="sm">Đang mở (HK1)</Badge>
             </h3>
 
